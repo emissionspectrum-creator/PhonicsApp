@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PhonicsApp</title>
+<style>
+  @font-face {
+    font-family: 'Lexend';
+    src: url('/fonts/Lexend-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Lexend';
+    src: url('/fonts/Lexend-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --bg: #f7f1e6;
+    --tile-bg: #fffaf0;
+    --tile-shadow: 0 3px 8px rgba(60, 45, 20, 0.14);
+    --consonant-color: #3a3226;
+    --vowel-color: #c0392b;
+    --placeholder-border: #d8cdb8;
+    --radius: 18px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--consonant-color);
+    font-family: 'Lexend', sans-serif;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  #app {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 10% 60% 30%;
+  }
+
+  /* 上帶 */
+  #top-bar {
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+  }
+  #family-select {
+    font-family: inherit;
+    font-size: 13px;
+    color: #b8ad98;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  #family-select:hover { color: #8a7f6a; }
+
+  /* 中帶 */
+  #stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #puzzle {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    transition: transform 400ms ease-out;
+  }
+  #stage.solved #puzzle {
+    transform: translateY(20vh);
+  }
+
+  .letter-slot, .letter-tile {
+    width: 13vw;
+    height: 13vw;
+    max-width: 170px;
+    max-height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7vw;
+    font-weight: 700;
+    border-radius: var(--radius);
+    background: var(--tile-bg);
+    box-shadow: var(--tile-shadow);
+  }
+
+  .letter-slot.placeholder {
+    background: rgba(0, 0, 0, 0.03);
+    border: 3px dashed var(--placeholder-border);
+    box-shadow: none;
+  }
+
+  .gap-spacer {
+    width: 6vw;
+    flex-shrink: 0;
+    transition: width 300ms ease-out;
+  }
+  .gap-spacer.collapsed { width: 0; }
+
+  #rime-group { display: flex; gap: 4px; }
+
+  @keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
+  #puzzle.bounce .letter-slot,
+  #puzzle.bounce .letter-tile {
+    animation: bounce 120ms ease-out;
+  }
+
+  #replay-btn {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--tile-bg);
+    box-shadow: var(--tile-shadow);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #replay-btn svg { width: 28px; height: 28px; fill: var(--consonant-color); }
+
+  #reveal-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 62%;
+    object-fit: contain;
+    transform: translateY(60vh);
+    transition: transform 400ms ease-out;
+  }
+  #stage.solved #reveal-image {
+    transform: translateY(0);
+  }
+
+  /* 下帶 */
+  #options-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+    height: 100%;
+  }
+  #options-row.locked .option-tile { pointer-events: none; }
+
+  .option-tile {
+    width: 9vw;
+    height: 9vw;
+    max-width: 110px;
+    max-height: 110px;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--tile-bg);
+    box-shadow: var(--tile-shadow);
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    font-size: 4.5vw;
+    color: var(--consonant-color);
+    cursor: pointer;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .option-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(60, 45, 20, 0.18);
+  }
+
+  @keyframes fadeWrong {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .option-tile.fade-wrong { animation: fadeWrong 400ms ease; }
+
+  @keyframes fadeOut {
+    to { opacity: 0; transform: scale(0.9); }
+  }
+  .option-tile.fade-out { animation: fadeOut 300ms ease forwards; }
+
+  #min-height-warning {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--bg);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    font-size: 24px;
+    color: var(--consonant-color);
+  }
+  #min-height-warning.visible { display: flex; }
+</style>
+</head>
+<body>
+
+<div id="min-height-warning">請將視窗放大,或按 F11 全螢幕使用</div>
+
+<div id="app">
+  <header id="top-bar">
+    <select id="family-select"></select>
+  </header>
+
+  <main id="stage">
+    <div id="puzzle">
+      <div class="letter-slot placeholder" id="onset-slot"></div>
+      <div class="gap-spacer" id="gap-spacer"></div>
+      <div id="rime-group"></div>
+    </div>
+    <button id="replay-btn" aria-label="重播">
+      <svg viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+    </button>
+    <img id="reveal-image" alt="">
+  </main>
+
+  <footer id="options-row"></footer>
+</div>
+
+<audio id="audio-player"></audio>
+
+<script>
+  const VOWELS = ['a', 'e', 'i', 'o', 'u'];
+  const MIN_HEIGHT = 700;
+
+  let words = [];
+  let session = null;
+  let solved = false;
+
+  function isVowel(ch) {
+    return VOWELS.includes(ch.toLowerCase());
+  }
+
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function sample(arr, n) {
+    return shuffle(arr).slice(0, n);
+  }
+
+  function checkMinHeight() {
+    document.getElementById('min-height-warning')
+      .classList.toggle('visible', window.innerHeight < MIN_HEIGHT);
+  }
+
+  function buildFamilySelect() {
+    const stages = new Map();
+    for (const w of words) {
+      if (!stages.has(w.stage)) stages.set(w.stage, new Set());
+      stages.get(w.stage).add(w.family);
+    }
+    const select = document.getElementById('family-select');
+    select.innerHTML = '';
+    for (const stage of [...stages.keys()].sort((a, b) => a - b)) {
+      const group = document.createElement('optgroup');
+      group.label = `階段 ${stage}`;
+      for (const family of [...stages.get(stage)].sort()) {
+        const opt = document.createElement('option');
+        opt.value = family;
+        opt.textContent = family;
+        group.appendChild(opt);
+      }
+      select.appendChild(group);
+    }
+  }
+
+  function playWord(wordObj, onEnded) {
+    const audio = document.getElementById('audio-player');
+    audio.pause();
+    audio.src = `/assets/audio/${wordObj.word}.mp3`;
+    audio.currentTime = 0;
+    if (onEnded) {
+      audio.addEventListener('ended', onEnded, { once: true });
+      audio.addEventListener('error', onEnded, { once: true });
+    }
+    const p = audio.play();
+    if (p && p.catch) {
+      p.catch((err) => console.warn(`音檔播放失敗: ${wordObj.word}`, err));
+    }
+  }
+
+  function preloadNextImage() {
+    const next = session.roundOrder[session.roundIndex + 1];
+    if (!next) return;
+    new Image().src = `/assets/images/${next.word}.webp`;
+  }
+
+  function resetPuzzle(target) {
+    const onsetSlot = document.getElementById('onset-slot');
+    onsetSlot.textContent = '';
+    onsetSlot.classList.add('placeholder');
+    onsetSlot.style.color = '';
+
+    document.getElementById('gap-spacer').classList.remove('collapsed');
+
+    const rimeGroup = document.getElementById('rime-group');
+    rimeGroup.innerHTML = '';
+    for (const ch of target.rime) {
+      const tile = document.createElement('div');
+      tile.className = 'letter-tile';
+      tile.textContent = ch;
+      tile.style.color = isVowel(ch) ? 'var(--vowel-color)' : 'var(--consonant-color)';
+      rimeGroup.appendChild(tile);
+    }
+
+    document.getElementById('puzzle').classList.remove('bounce');
+    document.getElementById('reveal-image').removeAttribute('src');
+    document.getElementById('stage').classList.remove('solved');
+  }
+
+  function renderOptions(options, target) {
+    const row = document.getElementById('options-row');
+    row.innerHTML = '';
+    row.classList.remove('locked');
+    for (const opt of options) {
+      const tile = document.createElement('button');
+      tile.className = 'option-tile';
+      tile.textContent = opt.onset;
+      tile.style.color = isVowel(opt.onset) ? 'var(--vowel-color)' : 'var(--consonant-color)';
+      tile.addEventListener('click', (e) => {
+        e.stopPropagation();
+        onOptionClick(opt, target, tile);
+      });
+      row.appendChild(tile);
+    }
+  }
+
+  function onOptionClick(opt, target, tileEl) {
+    if (solved) return;
+    if (opt.word !== target.word) {
+      playWord(opt);
+      tileEl.classList.remove('fade-wrong');
+      void tileEl.offsetWidth;
+      tileEl.classList.add('fade-wrong');
+      return;
+    }
+    handleCorrect(opt, tileEl);
+  }
+
+  function handleCorrect(opt, tileEl) {
+    solved = true;
+    document.getElementById('options-row').classList.add('locked');
+    preloadNextImage();
+
+    tileEl.classList.add('fade-out');
+
+    const onsetSlot = document.getElementById('onset-slot');
+    onsetSlot.textContent = opt.onset;
+    onsetSlot.classList.remove('placeholder');
+    onsetSlot.style.color = isVowel(opt.onset) ? 'var(--vowel-color)' : 'var(--consonant-color)';
+
+    const spacer = document.getElementById('gap-spacer');
+    const puzzle = document.getElementById('puzzle');
+    requestAnimationFrame(() => spacer.classList.add('collapsed'));
+    spacer.addEventListener('transitionend', () => {
+      puzzle.classList.add('bounce');
+      setTimeout(() => puzzle.classList.remove('bounce'), 130);
+    }, { once: true });
+
+    let shown = false;
+    const doShowImage = () => {
+      if (shown) return;
+      shown = true;
+      showImage(opt);
+    };
+    playWord(opt, doShowImage);
+    setTimeout(doShowImage, 4000);
+  }
+
+  function showImage(opt) {
+    const img = document.getElementById('reveal-image');
+    img.src = `/assets/images/${opt.word}.webp`;
+    img.alt = opt.word;
+    document.getElementById('stage').classList.add('solved');
+  }
+
+  function advanceRound() {
+    session.roundIndex++;
+    if (session.roundIndex < session.roundOrder.length) {
+      renderRound();
+    }
+  }
+
+  function renderRound() {
+    solved = false;
+    const target = session.roundOrder[session.roundIndex];
+    const others = session.familyWords.filter((w) => w.word !== target.word);
+    const distractorCount = Math.min(session.optionCount - 1, others.length);
+    const distractors = sample(others, distractorCount);
+    const options = [target, ...distractors].sort(
+      (a, b) => session.slotIndex.get(a.onset) - session.slotIndex.get(b.onset)
+    );
+
+    resetPuzzle(target);
+    renderOptions(options, target);
+    playWord(target);
+  }
+
+  function startFamilySession(family) {
+    const familyWords = words.filter((w) => w.family === family);
+    const slotOrderWords = shuffle(familyWords);
+    const slotIndex = new Map(slotOrderWords.map((w, i) => [w.onset, i]));
+    session = {
+      familyWords,
+      slotIndex,
+      roundOrder: shuffle(familyWords),
+      roundIndex: 0,
+      optionCount: Math.min(4, familyWords.length),
+    };
+    renderRound();
+  }
+
+  document.getElementById('replay-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!session) return;
+    playWord(session.roundOrder[session.roundIndex]);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!solved) return;
+    if (e.target.closest('#top-bar')) return;
+    advanceRound();
+  });
+
+  window.addEventListener('resize', checkMinHeight);
+
+  async function init() {
+    checkMinHeight();
+    const res = await fetch('/words.json');
+    words = await res.json();
+    buildFamilySelect();
+
+    const select = document.getElementById('family-select');
+    select.addEventListener('change', () => startFamilySession(select.value));
+    if (select.value) startFamilySession(select.value);
+  }
+
+  init();
+</script>
+</body>
+</html>

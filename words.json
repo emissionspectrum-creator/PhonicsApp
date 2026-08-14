@@ -1,0 +1,50 @@
+[
+  {
+    "word": "cat",
+    "onset": "c",
+    "rime": "at",
+    "family": "-at",
+    "stage": 1,
+    "note": ""
+  },
+  {
+    "word": "bat",
+    "onset": "b",
+    "rime": "at",
+    "family": "-at",
+    "stage": 1,
+    "note": "蝙蝠"
+  },
+  {
+    "word": "hat",
+    "onset": "h",
+    "rime": "at",
+    "family": "-at",
+    "stage": 1,
+    "note": ""
+  },
+  {
+    "word": "mat",
+    "onset": "m",
+    "rime": "at",
+    "family": "-at",
+    "stage": 1,
+    "note": ""
+  },
+  {
+    "word": "rat",
+    "onset": "r",
+    "rime": "at",
+    "family": "-at",
+    "stage": 1,
+    "note": ""
+  },
+  {
+    "word": "fat",
+    "onset": "f",
+    "rime": "at",
+    "family": "-at",
+    "stage": 1,
+    "note": ""
+  }
+]

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>PhonicsApp Admin</title>
+<style>
+  body {
+    font-family: -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
+    background: #f4f4f2;
+    color: #222;
+    margin: 0;
+    padding: 24px 32px 64px;
+  }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  h2 { font-size: 16px; margin: 0 0 12px; }
+  section {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+  }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid #eee; font-size: 14px; }
+  th { color: #666; font-weight: 600; }
+  button {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 13px;
+  }
+  button:hover { background: #eee; }
+  button:disabled { opacity: 0.5; cursor: default; }
+  select, input[type=text] {
+    font-size: 13px;
+    padding: 3px 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .rate-input { width: 60px; }
+  .badge { display: inline-block; width: 1.2em; text-align: center; }
+  .ok { color: #2a8f4a; }
+  .missing { color: #c0392b; }
+  pre.copy-list {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 13px;
+    white-space: pre-wrap;
+  }
+  .check-cols { display: flex; gap: 24px; flex-wrap: wrap; }
+  .check-col { flex: 1; min-width: 220px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+  }
+  .dropzone {
+    border: 2px dashed #ccc;
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .dropzone.drag-over { border-color: #2a7fd4; background: #eaf3fc; }
+  .dropzone.uploading { opacity: 0.5; }
+  .dropzone img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; display: none; }
+  .dropzone .placeholder {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 12px;
+    background: #f0f0f0;
+    border-radius: 4px;
+  }
+  .dropzone .word-label { margin-top: 6px; font-size: 13px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<h1>PhonicsApp Admin</h1>
+<p style="color:#777; font-size:13px;">開發期工作台。與 index.html 完全分離。</p>
+
+<p>
+  字族篩選:
+  <select id="family-filter"></select>
+</p>
+
+<section id="check-section">
+  <h2>缺漏檢查 <button id="refresh-check-btn">重新檢查</button></h2>
+  <div class="check-cols">
+    <div class="check-col">
+      <h3 style="font-size:14px;">缺音檔</h3>
+      <pre class="copy-list" id="missing-audio-list"></pre>
+    </div>
+    <div class="check-col">
+      <h3 style="font-size:14px;">缺圖片(可直接複製) <button id="copy-missing-images-btn">複製</button></h3>
+      <pre class="copy-list" id="missing-images-list"></pre>
+    </div>
+  </div>
+</section>
+
+<section id="audio-section">
+  <h2>音檔試聽 + 重生成</h2>
+  <table>
+    <thead>
+      <tr><th></th><th>word</th><th>family</th><th>試聽</th><th>voice</th><th>rate</th><th></th></tr>
+    </thead>
+    <tbody id="audio-table-body"></tbody>
+  </table>
+</section>
+
+<section id="image-section">
+  <h2>圖片拖放</h2>
+  <div class="grid" id="image-grid"></div>
+</section>
+
+<script>
+const VOICES = [
+  "en-US-AriaNeural",
+  "en-US-AnaNeural",
+  "en-US-ChristopherNeural",
+  "en-US-EricNeural",
+  "en-US-GuyNeural",
+  "en-US-JennyNeural",
+  "en-US-MichelleNeural",
+  "en-US-RogerNeural",
+];
+
+let words = [];
+let check = { missing_audio: [], missing_images: [] };
+let currentFamily = 'all';
+
+async function loadWords() {
+  const res = await fetch('/words.json');
+  words = await res.json();
+}
+
+function getFilteredWords() {
+  return currentFamily === 'all' ? words : words.filter((w) => w.family === currentFamily);
+}
+
+function buildFamilyFilter() {
+  const stages = new Map();
+  for (const w of words) {
+    if (!stages.has(w.stage)) stages.set(w.stage, new Set());
+    stages.get(w.stage).add(w.family);
+  }
+  const select = document.getElementById('family-filter');
+  select.innerHTML = '';
+  const allOpt = document.createElement('option');
+  allOpt.value = 'all';
+  allOpt.textContent = '全部';
+  select.appendChild(allOpt);
+  for (const stage of [...stages.keys()].sort((a, b) => a - b)) {
+    const group = document.createElement('optgroup');
+    group.label = `階段 ${stage}`;
+    for (const family of [...stages.get(stage)].sort()) {
+      const opt = document.createElement('option');
+      opt.value = family;
+      opt.textContent = family;
+      group.appendChild(opt);
+    }
+    select.appendChild(group);
+  }
+  select.addEventListener('change', () => {
+    currentFamily = select.value;
+    renderAudioTable();
+    renderImageGrid();
+    renderStatuses();
+  });
+}
+
+async function refreshCheck() {
+  const res = await fetch('/api/check');
+  check = await res.json();
+  renderCheck();
+  renderStatuses();
+}
+
+function renderCheck() {
+  document.getElementById('missing-audio-list').textContent =
+    check.missing_audio.length ? check.missing_audio.join('\n') : '(無)';
+  document.getElementById('missing-images-list').textContent =
+    check.missing_images.length ? check.missing_images.join('\n') : '(無)';
+}
+
+function renderStatuses() {
+  for (const w of words) {
+    const audioBadge = document.getElementById(`status-audio-${w.word}`);
+    if (audioBadge) {
+      const ok = !check.missing_audio.includes(w.word);
+      audioBadge.textContent = ok ? '✓' : '✗';
+      audioBadge.className = 'badge ' + (ok ? 'ok' : 'missing');
+    }
+    const imgLabel = document.getElementById(`status-image-${w.word}`);
+    if (imgLabel) {
+      const ok = !check.missing_images.includes(w.word);
+      imgLabel.textContent = w.word + (ok ? '' : '(缺)');
+      imgLabel.className = 'word-label' + (ok ? '' : ' missing');
+    }
+  }
+}
+
+function renderAudioTable() {
+  const tbody = document.getElementById('audio-table-body');
+  tbody.innerHTML = '';
+  for (const w of getFilteredWords()) {
+    const tr = document.createElement('tr');
+
+    const badgeTd = document.createElement('td');
+    const badge = document.createElement('span');
+    badge.className = 'badge';
+    badge.id = `status-audio-${w.word}`;
+    badgeTd.appendChild(badge);
+    tr.appendChild(badgeTd);
+
+    const wordTd = document.createElement('td');
+    wordTd.textContent = w.word;
+    tr.appendChild(wordTd);
+
+    const familyTd = document.createElement('td');
+    familyTd.textContent = w.family;
+    tr.appendChild(familyTd);
+
+    const playTd = document.createElement('td');
+    const audioEl = document.createElement('audio');
+    audioEl.controls = true;
+    audioEl.style.height = '28px';
+    audioEl.src = `/assets/audio/${w.word}.mp3`;
+    playTd.appendChild(audioEl);
+    tr.appendChild(playTd);
+
+    const voiceTd = document.createElement('td');
+    const voiceSel = document.createElement('select');
+    for (const v of VOICES) {
+      const opt = document.createElement('option');
+      opt.value = v;
+      opt.textContent = v.replace('en-US-', '').replace('Neural', '');
+      voiceSel.appendChild(opt);
+    }
+    voiceTd.appendChild(voiceSel);
+    tr.appendChild(voiceTd);
+
+    const rateTd = document.createElement('td');
+    const rateInput = document.createElement('input');
+    rateInput.type = 'text';
+    rateInput.className = 'rate-input';
+    rateInput.value = '+0%';
+    rateTd.appendChild(rateInput);
+    tr.appendChild(rateTd);
+
+    const btnTd = document.createElement('td');
+    const btn = document.createElement('button');
+    btn.textContent = '重新生成';
+    btn.addEventListener('click', () => regenerate(w.word, voiceSel, rateInput, btn, audioEl));
+    btnTd.appendChild(btn);
+    tr.appendChild(btnTd);
+
+    tbody.appendChild(tr);
+  }
+}
+
+async function regenerate(word, voiceSel, rateInput, btn, audioEl) {
+  btn.disabled = true;
+  const original = btn.textContent;
+  btn.textContent = '生成中...';
+  try {
+    const res = await fetch('/api/regenerate-audio', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ word, voice: voiceSel.value, rate: rateInput.value }),
+    });
+    if (res.ok) {
+      audioEl.src = `/assets/audio/${word}.mp3?t=${Date.now()}`;
+      await refreshCheck();
+    } else {
+      alert('生成失敗: ' + word);
+    }
+  } catch (e) {
+    alert('生成失敗: ' + word);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = original;
+  }
+}
+
+function renderImageGrid() {
+  const grid = document.getElementById('image-grid');
+  grid.innerHTML = '';
+  for (const w of getFilteredWords()) {
+    const zone = document.createElement('div');
+    zone.className = 'dropzone';
+
+    const placeholder = document.createElement('div');
+    placeholder.className = 'placeholder';
+    placeholder.textContent = '拖入圖片';
+
+    const img = document.createElement('img');
+    img.alt = w.word;
+    img.src = `/assets/images/${w.word}.webp`;
+    img.onerror = () => { img.style.display = 'none'; placeholder.style.display = 'flex'; };
+    img.onload = () => { img.style.display = 'block'; placeholder.style.display = 'none'; };
+
+    const label = document.createElement('div');
+    label.className = 'word-label';
+    label.id = `status-image-${w.word}`;
+    label.textContent = w.word;
+
+    zone.appendChild(placeholder);
+    zone.appendChild(img);
+    zone.appendChild(label);
+    grid.appendChild(zone);
+
+    setupDropzone(zone, w.word, img, placeholder);
+  }
+}
+
+function setupDropzone(zone, word, img, placeholder) {
+  zone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    zone.classList.add('drag-over');
+  });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', async (e) => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('word', word);
+    formData.append('file', file);
+
+    zone.classList.add('uploading');
+    try {
+      const res = await fetch('/api/upload-image', { method: 'POST', body: formData });
+      if (res.ok) {
+        img.src = `/assets/images/${word}.webp?t=${Date.now()}`;
+        await refreshCheck();
+      } else {
+        alert('上傳失敗: ' + word);
+      }
+    } catch (err) {
+      alert('上傳失敗: ' + word);
+    } finally {
+      zone.classList.remove('uploading');
+    }
+  });
+}
+
+document.getElementById('refresh-check-btn').addEventListener('click', refreshCheck);
+document.getElementById('copy-missing-images-btn').addEventListener('click', () => {
+  navigator.clipboard.writeText(check.missing_images.join('\n'));
+});
+
+(async function init() {
+  await loadWords();
+  buildFamilyFilter();
+  renderAudioTable();
+  renderImageGrid();
+  await refreshCheck();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+# PhonicsApp
+
+兒童自然發音（phonics）學習工具。完整規格見 [DESIGN.md](./DESIGN.md)。
+
+目前進度：`-at` 字族（cat / bat / hat / mat / rat / fat）的主要練習畫面與後台管理工具已完成，尚未進行實機驗證與動畫優化。
+
+## 需求
+
+- Python 3.13
+- ffmpeg（`generate_audio.py` 的靜音修剪 / 音量正規化需要）
+- `pip install flask pillow edge-tts pydub audioop-lts`
+
+## 執行
+
+```bash
+./start.sh          # Linux/macOS，啟動 server 並開啟瀏覽器到 admin.html
+start.bat           # Windows
+```
+
+或手動啟動：
+
+```bash
+python3 server.py
+```
+
+- 主畫面（給小孩用）：`http://127.0.0.1:5001/`
+- 後台管理（音檔試聽/重生成、圖片拖放上傳、缺漏檢查）：`http://127.0.0.1:5001/admin.html`
+
+assets 路徑預設為 `./assets`，可用環境變數 `ASSETS_DIR` 覆寫。
+
+## 目錄結構
+
+```
+words.json          單字資料（word/onset/rime/family/stage/note）
+server.py           Flask server：靜態檔案 + 圖片上傳/音檔重生成 API
+admin.html          後台管理頁面
+index.html          主練習畫面
+scripts/
+  generate_audio.py 用 edge-tts 補生成缺少的單字音檔
+  check_assets.py   檢查 words.json 對應的音檔/圖片是否齊全
+assets/
+  audio/*.mp3
+  images/*.webp
+fonts/               自 host 的 Lexend 字體（woff2）
+```
+
+## 產生音檔 / 檢查缺漏
+
+```bash
+python3 scripts/generate_audio.py   # 只補缺的，不覆蓋已存在檔案
+python3 scripts/check_assets.py     # 列出缺音檔/缺圖片清單
+```
+
+## 圖片來源
+
+圖片一律由人工準備後透過 admin.html 拖放上傳（自動置中裁切、統一背景、轉存為 WebP），不由程式自動搜尋或產生。
