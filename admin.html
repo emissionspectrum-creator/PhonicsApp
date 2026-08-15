@@ -88,6 +88,7 @@
 
 <p>
   字族篩選:
+  <select id="stage-filter"></select>
   <select id="family-filter"></select>
 </p>
 
@@ -134,6 +135,7 @@ const VOICES = [
 
 let words = [];
 let check = { missing_audio: [], missing_images: [] };
+let currentStage = 'all';
 let currentFamily = 'all';
 
 async function loadWords() {
@@ -142,38 +144,60 @@ async function loadWords() {
 }
 
 function getFilteredWords() {
-  return currentFamily === 'all' ? words : words.filter((w) => w.family === currentFamily);
+  return words.filter((w) => {
+    if (currentFamily !== 'all') return w.family === currentFamily;
+    if (currentStage !== 'all') return String(w.stage) === String(currentStage);
+    return true;
+  });
+}
+
+function buildStageFilter() {
+  const stages = new Set(words.map((w) => w.stage));
+  const select = document.getElementById('stage-filter');
+  select.innerHTML = '';
+  const allOpt = document.createElement('option');
+  allOpt.value = 'all';
+  allOpt.textContent = '全部階段';
+  select.appendChild(allOpt);
+  for (const stage of [...stages].sort((a, b) => a - b)) {
+    const opt = document.createElement('option');
+    opt.value = stage;
+    opt.textContent = `階段 ${stage}`;
+    select.appendChild(opt);
+  }
+  select.onchange = () => {
+    currentStage = select.value;
+    currentFamily = 'all';
+    buildFamilyFilter();
+    renderAudioTable();
+    renderImageGrid();
+    renderStatuses();
+  };
 }
 
 function buildFamilyFilter() {
-  const stages = new Map();
-  for (const w of words) {
-    if (!stages.has(w.stage)) stages.set(w.stage, new Set());
-    stages.get(w.stage).add(w.family);
-  }
+  const families = currentStage === 'all'
+    ? new Set()
+    : new Set(words.filter((w) => String(w.stage) === String(currentStage)).map((w) => w.family));
   const select = document.getElementById('family-filter');
   select.innerHTML = '';
   const allOpt = document.createElement('option');
   allOpt.value = 'all';
-  allOpt.textContent = '全部';
+  allOpt.textContent = '全部字族';
   select.appendChild(allOpt);
-  for (const stage of [...stages.keys()].sort((a, b) => a - b)) {
-    const group = document.createElement('optgroup');
-    group.label = `階段 ${stage}`;
-    for (const family of [...stages.get(stage)].sort()) {
-      const opt = document.createElement('option');
-      opt.value = family;
-      opt.textContent = family;
-      group.appendChild(opt);
-    }
-    select.appendChild(group);
+  for (const family of [...families].sort()) {
+    const opt = document.createElement('option');
+    opt.value = family;
+    opt.textContent = family;
+    select.appendChild(opt);
   }
-  select.addEventListener('change', () => {
+  select.value = currentFamily;
+  select.onchange = () => {
     currentFamily = select.value;
     renderAudioTable();
     renderImageGrid();
     renderStatuses();
-  });
+  };
 }
 
 async function refreshCheck() {
@@ -361,6 +385,7 @@ document.getElementById('copy-missing-images-btn').addEventListener('click', () 
 
 (async function init() {
   await loadWords();
+  buildStageFilter();
   buildFamilyFilter();
   renderAudioTable();
   renderImageGrid();

@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent
 ASSETS_DIR = Path(os.environ.get("ASSETS_DIR", ROOT / "assets"))
 WORDS_JSON = ROOT / "words.json"
 
-DEFAULT_VOICE = "en-US-AriaNeural"
+DEFAULT_VOICE = "en-US-EricNeural"
 DEFAULT_RATE = "+0%"
 
 

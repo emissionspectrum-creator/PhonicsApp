@@ -55,7 +55,7 @@
     align-items: center;
     padding: 0 28px;
   }
-  #family-select {
+  #stage-select, #family-select {
     font-family: inherit;
     font-size: 13px;
     color: #b8ad98;
@@ -64,7 +64,7 @@
     cursor: pointer;
     outline: none;
   }
-  #family-select:hover { color: #8a7f6a; }
+  #stage-select:hover, #family-select:hover { color: #8a7f6a; }
 
   /* 中帶 */
   #stage {
@@ -226,6 +226,7 @@
 
 <div id="app">
   <header id="top-bar">
+    <select id="stage-select"></select>
     <select id="family-select"></select>
   </header>
 
@@ -276,24 +277,29 @@
       .classList.toggle('visible', window.innerHeight < MIN_HEIGHT);
   }
 
-  function buildFamilySelect() {
-    const stages = new Map();
-    for (const w of words) {
-      if (!stages.has(w.stage)) stages.set(w.stage, new Set());
-      stages.get(w.stage).add(w.family);
+  function buildStageSelect() {
+    const stages = new Set(words.map((w) => w.stage));
+    const select = document.getElementById('stage-select');
+    select.innerHTML = '';
+    for (const stage of [...stages].sort((a, b) => a - b)) {
+      const opt = document.createElement('option');
+      opt.value = stage;
+      opt.textContent = `階段 ${stage}`;
+      select.appendChild(opt);
     }
+  }
+
+  function buildFamilySelect(stage) {
+    const families = new Set(
+      words.filter((w) => String(w.stage) === String(stage)).map((w) => w.family)
+    );
     const select = document.getElementById('family-select');
     select.innerHTML = '';
-    for (const stage of [...stages.keys()].sort((a, b) => a - b)) {
-      const group = document.createElement('optgroup');
-      group.label = `階段 ${stage}`;
-      for (const family of [...stages.get(stage)].sort()) {
-        const opt = document.createElement('option');
-        opt.value = family;
-        opt.textContent = family;
-        group.appendChild(opt);
-      }
-      select.appendChild(group);
+    for (const family of [...families].sort()) {
+      const opt = document.createElement('option');
+      opt.value = family;
+      opt.textContent = family;
+      select.appendChild(opt);
     }
   }
 
@@ -461,11 +467,19 @@
     checkMinHeight();
     const res = await fetch('/words.json');
     words = await res.json();
-    buildFamilySelect();
+    buildStageSelect();
 
-    const select = document.getElementById('family-select');
-    select.addEventListener('change', () => startFamilySession(select.value));
-    if (select.value) startFamilySession(select.value);
+    const stageSelect = document.getElementById('stage-select');
+    const familySelect = document.getElementById('family-select');
+
+    stageSelect.addEventListener('change', () => {
+      buildFamilySelect(stageSelect.value);
+      startFamilySession(familySelect.value);
+    });
+    familySelect.addEventListener('change', () => startFamilySession(familySelect.value));
+
+    buildFamilySelect(stageSelect.value);
+    if (familySelect.value) startFamilySession(familySelect.value);
   }
 
   init();

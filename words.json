@@ -46,5 +46,261 @@
     "family": "-at",
     "stage": 1,
     "note": ""
+  },
+  {
+    "word": "can",
+    "onset": "c",
+    "rime": "an",
+    "family": "-an",
+    "stage": 1,
+    "note": "罐頭（名詞義，非情態動詞 can）"
+  },
+  {
+    "word": "fan",
+    "onset": "f",
+    "rime": "an",
+    "family": "-an",
+    "stage": 1,
+    "note": "風扇"
+  },
+  {
+    "word": "man",
+    "onset": "m",
+    "rime": "an",
+    "family": "-an",
+    "stage": 1,
+    "note": "男人"
+  },
+  {
+    "word": "pan",
+    "onset": "p",
+    "rime": "an",
+    "family": "-an",
+    "stage": 1,
+    "note": "平底鍋"
+  },
+  {
+    "word": "van",
+    "onset": "v",
+    "rime": "an",
+    "family": "-an",
+    "stage": 1,
+    "note": "廂型車"
+  },
+  {
+    "word": "cap",
+    "onset": "c",
+    "rime": "ap",
+    "family": "-ap",
+    "stage": 1,
+    "note": "棒球帽（與 hat 做外型區隔）"
+  },
+  {
+    "word": "map",
+    "onset": "m",
+    "rime": "ap",
+    "family": "-ap",
+    "stage": 1,
+    "note": "地圖"
+  },
+  {
+    "word": "tap",
+    "onset": "t",
+    "rime": "ap",
+    "family": "-ap",
+    "stage": 1,
+    "note": "水龍頭（同形異義，取「水龍頭」義，非「輕拍」）"
+  },
+  {
+    "word": "nap",
+    "onset": "n",
+    "rime": "ap",
+    "family": "-ap",
+    "stage": 1,
+    "note": "小睡（動作場景：男孩趴睡）"
+  },
+  {
+    "word": "bag",
+    "onset": "b",
+    "rime": "ag",
+    "family": "-ag",
+    "stage": 1,
+    "note": "袋子"
+  },
+  {
+    "word": "tag",
+    "onset": "t",
+    "rime": "ag",
+    "family": "-ag",
+    "stage": 1,
+    "note": "標籤（同形異義，取「價格標籤」義，非「鬼抓人」）"
+  },
+  {
+    "word": "rag",
+    "onset": "r",
+    "rime": "ag",
+    "family": "-ag",
+    "stage": 1,
+    "note": "抹布"
+  },
+  {
+    "word": "wag",
+    "onset": "w",
+    "rime": "ag",
+    "family": "-ag",
+    "stage": 1,
+    "note": "（狗）搖尾巴，動作場景"
+  },
+  {
+    "word": "pig",
+    "onset": "p",
+    "rime": "ig",
+    "family": "-ig",
+    "stage": 2,
+    "note": ""
+  },
+  {
+    "word": "wig",
+    "onset": "w",
+    "rime": "ig",
+    "family": "-ig",
+    "stage": 2,
+    "note": ""
+  },
+  {
+    "word": "big",
+    "onset": "b",
+    "rime": "ig",
+    "family": "-ig",
+    "stage": 2,
+    "note": "形容詞,非具體名詞;畫面採用兩個同物件不同尺寸呈現大小對比,屬單一物件規則的例外"
+  },
+  {
+    "word": "dig",
+    "onset": "d",
+    "rime": "ig",
+    "family": "-ig",
+    "stage": 2,
+    "note": "動詞,畫面為男孩用鏟子挖洞"
+  },
+  {
+    "word": "fig",
+    "onset": "f",
+    "rime": "ig",
+    "family": "-ig",
+    "stage": 2,
+    "note": "無花果;台灣孩子生活經驗中較少見,具體度中等"
+  },
+  {
+    "word": "bin",
+    "onset": "b",
+    "rime": "in",
+    "family": "-in",
+    "stage": 2,
+    "note": "選定意義:收納桶/收納箱"
+  },
+  {
+    "word": "pin",
+    "onset": "p",
+    "rime": "in",
+    "family": "-in",
+    "stage": 2,
+    "note": "選定意義:別針(safety pin)"
+  },
+  {
+    "word": "fin",
+    "onset": "f",
+    "rime": "in",
+    "family": "-in",
+    "stage": 2,
+    "note": "需搭配魚的畫面才能清楚辨識部位"
+  },
+  {
+    "word": "din",
+    "onset": "d",
+    "rime": "in",
+    "family": "-in",
+    "stage": 2,
+    "note": "抽象名詞(噪音),畫面採用鬧鐘+音符/驚嘆符號表示吵鬧,屬單一物件規則的例外"
+  },
+  {
+    "word": "win",
+    "onset": "w",
+    "rime": "in",
+    "family": "-in",
+    "stage": 2,
+    "note": "動詞,畫面為男孩舉著獎盃慶祝"
+  },
+  {
+    "word": "zip",
+    "onset": "z",
+    "rime": "ip",
+    "family": "-ip",
+    "stage": 2,
+    "note": "選定意義:拉鍊"
+  },
+  {
+    "word": "hip",
+    "onset": "h",
+    "rime": "ip",
+    "family": "-ip",
+    "stage": 2,
+    "note": "身體部位"
+  },
+  {
+    "word": "lip",
+    "onset": "l",
+    "rime": "ip",
+    "family": "-ip",
+    "stage": 2,
+    "note": "身體部位"
+  },
+  {
+    "word": "dip",
+    "onset": "d",
+    "rime": "ip",
+    "family": "-ip",
+    "stage": 2,
+    "note": "選定意義:沾醬,畫面為一碗醬料"
+  },
+  {
+    "word": "pip",
+    "onset": "p",
+    "rime": "ip",
+    "family": "-ip",
+    "stage": 2,
+    "note": "選定意義:蘋果籽;台灣孩子中文詞彙中較少使用此概念,具體度中等"
+  },
+  {
+    "word": "kit",
+    "onset": "k",
+    "rime": "it",
+    "family": "-it",
+    "stage": 2,
+    "note": "選定意義:急救箱(first aid kit)"
+  },
+  {
+    "word": "sit",
+    "onset": "s",
+    "rime": "it",
+    "family": "-it",
+    "stage": 2,
+    "note": "動詞,畫面為男孩坐著"
+  },
+  {
+    "word": "hit",
+    "onset": "h",
+    "rime": "it",
+    "family": "-it",
+    "stage": 2,
+    "note": "動詞,畫面為男孩揮棒擊球瞬間"
+  },
+  {
+    "word": "pit",
+    "onset": "p",
+    "rime": "it",
+    "family": "-it",
+    "stage": 2,
+    "note": "同形異義字,選定意義:坑洞(hole),非水果核"
   }
 ]
