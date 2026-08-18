@@ -93,6 +93,7 @@
     height: 13vw;
     max-width: 170px;
     max-height: 170px;
+    margin: 0 2px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,8 +116,6 @@
     transition: width 300ms ease-out;
   }
   .gap-spacer.collapsed { width: 0; }
-
-  #rime-group { display: flex; gap: 4px; }
 
   @keyframes bounce {
     0% { transform: scale(1); }
@@ -231,11 +230,7 @@
   </header>
 
   <main id="stage">
-    <div id="puzzle">
-      <div class="letter-slot placeholder" id="onset-slot"></div>
-      <div class="gap-spacer" id="gap-spacer"></div>
-      <div id="rime-group"></div>
-    </div>
+    <div id="puzzle"></div>
     <button id="replay-btn" aria-label="重播">
       <svg viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
     </button>
@@ -250,8 +245,11 @@
 <script>
   const VOWELS = ['a', 'e', 'i', 'o', 'u'];
   const MIN_HEIGHT = 700;
+  const CONTRAST_STAGE = 6;
+  const MIN_CONTRAST_SIZE = 3;
 
   let words = [];
+  let contrastSets = new Map();
   let session = null;
   let solved = false;
 
@@ -277,8 +275,31 @@
       .classList.toggle('visible', window.innerHeight < MIN_HEIGHT);
   }
 
+  function letters(w) {
+    return [w.onset, ...w.rime];
+  }
+
+  function buildContrastSets() {
+    const sets = new Map();
+    for (const w of words) {
+      if (w.rime.length > 1 && isVowel(w.rime[1])) continue; // 母音組合(ai/ee/oa…)不做單母音對比
+      const key = `${w.onset}_${w.rime.slice(1)}`;
+      if (!sets.has(key)) sets.set(key, []);
+      sets.get(key).push(w);
+    }
+    for (const [key, group] of sets) {
+      if (group.length < MIN_CONTRAST_SIZE) sets.delete(key);
+    }
+    return new Map([...sets].sort((a, b) => a[0].localeCompare(b[0])));
+  }
+
+  function isContrastStage(stage) {
+    return String(stage) === String(CONTRAST_STAGE);
+  }
+
   function buildStageSelect() {
     const stages = new Set(words.map((w) => w.stage));
+    stages.add(CONTRAST_STAGE);
     const select = document.getElementById('stage-select');
     select.innerHTML = '';
     for (const stage of [...stages].sort((a, b) => a - b)) {
@@ -290,15 +311,17 @@
   }
 
   function buildFamilySelect(stage) {
-    const families = new Set(
-      words.filter((w) => String(w.stage) === String(stage)).map((w) => w.family)
-    );
+    const names = isContrastStage(stage)
+      ? [...contrastSets.keys()]
+      : [...new Set(
+          words.filter((w) => String(w.stage) === String(stage)).map((w) => w.family)
+        )].sort();
     const select = document.getElementById('family-select');
     select.innerHTML = '';
-    for (const family of [...families].sort()) {
+    for (const name of names) {
       const opt = document.createElement('option');
-      opt.value = family;
-      opt.textContent = family;
+      opt.value = name;
+      opt.textContent = name;
       select.appendChild(opt);
     }
   }
@@ -325,24 +348,34 @@
   }
 
   function resetPuzzle(target) {
-    const onsetSlot = document.getElementById('onset-slot');
-    onsetSlot.textContent = '';
-    onsetSlot.classList.add('placeholder');
-    onsetSlot.style.color = '';
+    const puzzle = document.getElementById('puzzle');
+    puzzle.innerHTML = '';
 
-    document.getElementById('gap-spacer').classList.remove('collapsed');
+    const chars = letters(target);
+    const addSpacer = () => {
+      const spacer = document.createElement('div');
+      spacer.className = 'gap-spacer';
+      puzzle.appendChild(spacer);
+    };
 
-    const rimeGroup = document.getElementById('rime-group');
-    rimeGroup.innerHTML = '';
-    for (const ch of target.rime) {
+    chars.forEach((ch, i) => {
+      if (i === session.blankIndex) {
+        if (i > 0) addSpacer();
+        const slot = document.createElement('div');
+        slot.className = 'letter-slot placeholder';
+        slot.id = 'blank-slot';
+        puzzle.appendChild(slot);
+        if (i < chars.length - 1) addSpacer();
+        return;
+      }
       const tile = document.createElement('div');
       tile.className = 'letter-tile';
       tile.textContent = ch;
       tile.style.color = isVowel(ch) ? 'var(--vowel-color)' : 'var(--consonant-color)';
-      rimeGroup.appendChild(tile);
-    }
+      puzzle.appendChild(tile);
+    });
 
-    document.getElementById('puzzle').classList.remove('bounce');
+    puzzle.classList.remove('bounce');
     document.getElementById('reveal-image').removeAttribute('src');
     document.getElementById('stage').classList.remove('solved');
   }
@@ -352,10 +385,11 @@
     row.innerHTML = '';
     row.classList.remove('locked');
     for (const opt of options) {
+      const ch = session.keyAt(opt);
       const tile = document.createElement('button');
       tile.className = 'option-tile';
-      tile.textContent = opt.onset;
-      tile.style.color = isVowel(opt.onset) ? 'var(--vowel-color)' : 'var(--consonant-color)';
+      tile.textContent = ch;
+      tile.style.color = isVowel(ch) ? 'var(--vowel-color)' : 'var(--consonant-color)';
       tile.addEventListener('click', (e) => {
         e.stopPropagation();
         onOptionClick(opt, target, tile);
@@ -383,18 +417,21 @@
 
     tileEl.classList.add('fade-out');
 
-    const onsetSlot = document.getElementById('onset-slot');
-    onsetSlot.textContent = opt.onset;
-    onsetSlot.classList.remove('placeholder');
-    onsetSlot.style.color = isVowel(opt.onset) ? 'var(--vowel-color)' : 'var(--consonant-color)';
+    const ch = session.keyAt(opt);
+    const slot = document.getElementById('blank-slot');
+    slot.textContent = ch;
+    slot.classList.remove('placeholder');
+    slot.style.color = isVowel(ch) ? 'var(--vowel-color)' : 'var(--consonant-color)';
 
-    const spacer = document.getElementById('gap-spacer');
     const puzzle = document.getElementById('puzzle');
-    requestAnimationFrame(() => spacer.classList.add('collapsed'));
-    spacer.addEventListener('transitionend', () => {
-      puzzle.classList.add('bounce');
-      setTimeout(() => puzzle.classList.remove('bounce'), 130);
-    }, { once: true });
+    const spacers = [...puzzle.querySelectorAll('.gap-spacer')];
+    requestAnimationFrame(() => spacers.forEach((s) => s.classList.add('collapsed')));
+    if (spacers.length) {
+      spacers[0].addEventListener('transitionend', () => {
+        puzzle.classList.add('bounce');
+        setTimeout(() => puzzle.classList.remove('bounce'), 130);
+      }, { once: true });
+    }
 
     let shown = false;
     const doShowImage = () => {
@@ -423,11 +460,11 @@
   function renderRound() {
     solved = false;
     const target = session.roundOrder[session.roundIndex];
-    const others = session.familyWords.filter((w) => w.word !== target.word);
+    const others = session.items.filter((w) => w.word !== target.word);
     const distractorCount = Math.min(session.optionCount - 1, others.length);
     const distractors = sample(others, distractorCount);
     const options = [target, ...distractors].sort(
-      (a, b) => session.slotIndex.get(a.onset) - session.slotIndex.get(b.onset)
+      (a, b) => session.slotIndex.get(session.keyAt(a)) - session.slotIndex.get(session.keyAt(b))
     );
 
     resetPuzzle(target);
@@ -435,16 +472,24 @@
     playWord(target);
   }
 
-  function startFamilySession(family) {
-    const familyWords = words.filter((w) => w.family === family);
-    const slotOrderWords = shuffle(familyWords);
-    const slotIndex = new Map(slotOrderWords.map((w, i) => [w.onset, i]));
+  function startSession(name, stage) {
+    const contrast = isContrastStage(stage);
+    const items = contrast
+      ? contrastSets.get(name)
+      : words.filter((w) => w.family === name && w.stage <= Number(stage));
+    if (!items || !items.length) return;
+
+    const blankIndex = contrast ? 1 : 0;
+    const keyAt = (w) => letters(w)[blankIndex];
+    const slotIndex = new Map(shuffle(items).map((w, i) => [keyAt(w), i]));
     session = {
-      familyWords,
+      items,
+      blankIndex,
+      keyAt,
       slotIndex,
-      roundOrder: shuffle(familyWords),
+      roundOrder: shuffle(items),
       roundIndex: 0,
-      optionCount: Math.min(4, familyWords.length),
+      optionCount: Math.min(4, items.length),
     };
     renderRound();
   }
@@ -467,6 +512,7 @@
     checkMinHeight();
     const res = await fetch('/words.json');
     words = await res.json();
+    contrastSets = buildContrastSets();
     buildStageSelect();
 
     const stageSelect = document.getElementById('stage-select');
@@ -474,12 +520,13 @@
 
     stageSelect.addEventListener('change', () => {
       buildFamilySelect(stageSelect.value);
-      startFamilySession(familySelect.value);
+      startSession(familySelect.value, stageSelect.value);
     });
-    familySelect.addEventListener('change', () => startFamilySession(familySelect.value));
+    familySelect.addEventListener('change', () =>
+      startSession(familySelect.value, stageSelect.value));
 
     buildFamilySelect(stageSelect.value);
-    if (familySelect.value) startFamilySession(familySelect.value);
+    if (familySelect.value) startSession(familySelect.value, stageSelect.value);
   }
 
   init();

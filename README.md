@@ -2,7 +2,7 @@
 
 兒童自然發音（phonics）學習工具。完整規格見 [DESIGN.md](./DESIGN.md)。
 
-目前進度：`-at` 字族（cat / bat / hat / mat / rat / fat）的主要練習畫面與後台管理工具已完成，尚未進行實機驗證與動畫優化。
+目前進度：階段一～五（CVC 短母音）字彙與素材、階段六母音對比題型（對比組由 onset＋尾子音自動推導，見 [HANDOFF.md](./HANDOFF.md)）已完成，尚未進行實機驗證與動畫優化。
 
 ## 需求
 
@@ -32,6 +32,7 @@ assets 路徑預設為 `./assets`，可用環境變數 `ASSETS_DIR` 覆寫。
 
 ```
 words.json          單字資料（word/onset/rime/family/stage/note）
+HANDOFF.md          給產字用 Claude Project 的資料契約與現況文件
 server.py           Flask server：靜態檔案 + 圖片上傳/音檔重生成 API
 admin.html          後台管理頁面
 index.html          主練習畫面

@@ -291,6 +291,8 @@
 | 五  | -et, -en, -ed      | net, pet, wet, jet / pen, hen, ten / bed, red, fed                           |
 | 六  | 五母音總混合             | hat / hit / hot / hut 四選一                                                    |
 
+**階段六為程式推導,`stage: 6` 保留、不寫入 words.json。** 對比組由「onset 相同、尾子音相同」自動歸組(同組 ≥3 字才出現),實作方式與現有組清單見 [HANDOFF.md](./HANDOFF.md)。
+
 **階段一應佔掉總時間的一半。** 此階段要焊死的不是那二十個字,而是「a \= /æ/」這個基準,後續所有母音都以此為參照。
 
 **`-og` 延後。** 美式 dog 的母音(/ɔ/)與 hot、pot 的短 o 不同,不適合作為教母音規則的範例。dog 太常用不學可惜,但等 o 穩固後再收。
@@ -304,11 +306,11 @@
 * 階段四:cup / cap、bug / bag、run / ran
 * 階段五:pen / pan、bed / bad、ten / tan
 
-此功能依賴 `onset` / `rime` 欄位查詢。
+此功能依賴 `onset` / `rime` 欄位查詢,已實作為階段六;推導規則見 [HANDOFF.md](./HANDOFF.md)。
 
 ### 7.4 CVC 之後
 
-字尾雙子音(-ck, -ll, -ss, -ng)→ 開頭子音串(st-, fl-, gr-)→ 子音 digraph(sh, ch, th, wh)→ magic e(cap/cape、kit/kite)→ 母音組合(ee, ea, oo, ai, oa)
+階段七:字尾雙子音(-ck, -ll, -ss, -ng)→ 階段八:開頭子音串(st-, fl-, gr-)→ 階段九:子音 digraph(sh, ch, th, wh)→ 階段十:magic e(cap/cape、kit/kite)→ 階段十一:母音組合(ee, ea, oo, ai, oa)
 
 原則同樣是一次只動一個變數:CVC 之後先擴充子音複雜度,母音維持不變,待五個短母音穩固後才進入長母音。
 
