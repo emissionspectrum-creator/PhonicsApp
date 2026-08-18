@@ -302,5 +302,293 @@
     "family": "-it",
     "stage": 2,
     "note": "同形異義字,選定意義:坑洞(hole),非水果核"
+  },
+  {
+    "word": "top",
+    "onset": "t",
+    "rime": "op",
+    "family": "-op",
+    "stage": 3,
+    "note": "同形異義,選定「頂端」(非陀螺/上衣)。抽象名詞,圖以山頂加箭頭表示,單一物件例外"
+  },
+  {
+    "word": "mop",
+    "onset": "m",
+    "rime": "op",
+    "family": "-op",
+    "stage": 3,
+    "note": "拖把"
+  },
+  {
+    "word": "hop",
+    "onset": "h",
+    "rime": "op",
+    "family": "-op",
+    "stage": 3,
+    "note": "動詞「跳」,圖以兔子跳躍表示"
+  },
+  {
+    "word": "pop",
+    "onset": "p",
+    "rime": "op",
+    "family": "-op",
+    "stage": 3,
+    "note": "擬聲「爆」,圖以爆開的氣球表示"
+  },
+  {
+    "word": "pot",
+    "onset": "p",
+    "rime": "ot",
+    "family": "-ot",
+    "stage": 3,
+    "note": "同形異義,選定「鍋子」(非花盆)"
+  },
+  {
+    "word": "hot",
+    "onset": "h",
+    "rime": "ot",
+    "family": "-ot",
+    "stage": 3,
+    "note": "形容詞「熱」,圖以冒熱氣的湯碗表示;為階段六 hat/hit/hot/hut 對比而收"
+  },
+  {
+    "word": "dot",
+    "onset": "d",
+    "rime": "ot",
+    "family": "-ot",
+    "stage": 3,
+    "note": "圓點"
+  },
+  {
+    "word": "cot",
+    "onset": "c",
+    "rime": "ot",
+    "family": "-ot",
+    "stage": 3,
+    "note": "嬰兒床(美式)"
+  },
+  {
+    "word": "box",
+    "onset": "b",
+    "rime": "ox",
+    "family": "-ox",
+    "stage": 3,
+    "note": "箱子"
+  },
+  {
+    "word": "fox",
+    "onset": "f",
+    "rime": "ox",
+    "family": "-ox",
+    "stage": 3,
+    "note": "狐狸"
+  },
+  {
+    "word": "ox",
+    "onset": "",
+    "rime": "ox",
+    "family": "-ox",
+    "stage": 3,
+    "note": "公牛;零 onset(母音開頭)"
+  },
+  {
+    "word": "bug",
+    "onset": "b",
+    "rime": "ug",
+    "family": "-ug",
+    "stage": 4,
+    "note": "小蟲(以瓢蟲造型呈現)"
+  },
+  {
+    "word": "mug",
+    "onset": "m",
+    "rime": "ug",
+    "family": "-ug",
+    "stage": 4,
+    "note": "馬克杯(有把手,與 cup 區分)"
+  },
+  {
+    "word": "rug",
+    "onset": "r",
+    "rime": "ug",
+    "family": "-ug",
+    "stage": 4,
+    "note": "小地毯;與階段一 rag 對比"
+  },
+  {
+    "word": "jug",
+    "onset": "j",
+    "rime": "ug",
+    "family": "-ug",
+    "stage": 4,
+    "note": "有嘴有把手的水壺"
+  },
+  {
+    "word": "hug",
+    "onset": "h",
+    "rime": "ug",
+    "family": "-ug",
+    "stage": 4,
+    "note": "擁抱(動詞,破例);畫一個小孩抱著泰迪熊,維持單一主體"
+  },
+  {
+    "word": "pug",
+    "onset": "p",
+    "rime": "ug",
+    "family": "-ug",
+    "stage": 4,
+    "note": "巴哥犬;與階段二 pig 對比"
+  },
+  {
+    "word": "sun",
+    "onset": "s",
+    "rime": "un",
+    "family": "-un",
+    "stage": 4,
+    "note": "太陽"
+  },
+  {
+    "word": "bun",
+    "onset": "b",
+    "rime": "un",
+    "family": "-un",
+    "stage": 4,
+    "note": "小圓麵包(漢堡包造型)"
+  },
+  {
+    "word": "run",
+    "onset": "r",
+    "rime": "un",
+    "family": "-un",
+    "stage": 4,
+    "note": "跑(動詞,破例);畫一個奔跑中的小孩"
+  },
+  {
+    "word": "gun",
+    "onset": "g",
+    "rime": "un",
+    "family": "-un",
+    "stage": 4,
+    "note": "槍(以玩具水槍造型呈現)"
+  },
+  {
+    "word": "nut",
+    "onset": "n",
+    "rime": "ut",
+    "family": "-ut",
+    "stage": 4,
+    "note": "堅果(核桃),不是螺帽"
+  },
+  {
+    "word": "hut",
+    "onset": "h",
+    "rime": "ut",
+    "family": "-ut",
+    "stage": 4,
+    "note": "茅草小屋;與 hat/hit/hot 對比"
+  },
+  {
+    "word": "cut",
+    "onset": "c",
+    "rime": "ut",
+    "family": "-ut",
+    "stage": 4,
+    "note": "切/剪(動詞,破例);畫剪刀剪紙"
+  },
+  {
+    "word": "cup",
+    "onset": "c",
+    "rime": "up",
+    "family": "-up",
+    "stage": 4,
+    "note": "無把手杯子;與 cap 及 mug 區分"
+  },
+  {
+    "word": "pup",
+    "onset": "p",
+    "rime": "up",
+    "family": "-up",
+    "stage": 4,
+    "note": "小狗(幼犬)"
+  },
+  {
+    "word": "up",
+    "onset": "",
+    "rime": "up",
+    "family": "-up",
+    "stage": 4,
+    "note": "向上(VC 結構,破例);畫向上的粗箭頭"
+  },
+  {
+    "word": "net",
+    "onset": "n",
+    "rime": "et",
+    "family": "-et",
+    "stage": 5,
+    "note": "捕蟲網"
+  },
+  {
+    "word": "jet",
+    "onset": "j",
+    "rime": "et",
+    "family": "-et",
+    "stage": 5,
+    "note": "噴射機"
+  },
+  {
+    "word": "pet",
+    "onset": "p",
+    "rime": "et",
+    "family": "-et",
+    "stage": 5,
+    "note": "寵物;圖用戴項圈的小狗,項圈暗示「寵物」而非 dog"
+  },
+  {
+    "word": "wet",
+    "onset": "w",
+    "rime": "et",
+    "family": "-et",
+    "stage": 5,
+    "note": "形容詞例外;圖用一把滴著水的雨傘表達「濕」"
+  },
+  {
+    "word": "hen",
+    "onset": "h",
+    "rime": "en",
+    "family": "-en",
+    "stage": 5,
+    "note": "母雞"
+  },
+  {
+    "word": "pen",
+    "onset": "p",
+    "rime": "en",
+    "family": "-en",
+    "stage": 5,
+    "note": "原子筆(非圍欄);與 pan/pin 構成對比"
+  },
+  {
+    "word": "ten",
+    "onset": "t",
+    "rime": "en",
+    "family": "-en",
+    "stage": 5,
+    "note": "數字十;單一物件規則例外,以十個相同圓點排列表示"
+  },
+  {
+    "word": "bed",
+    "onset": "b",
+    "rime": "ed",
+    "family": "-ed",
+    "stage": 5,
+    "note": "床"
+  },
+  {
+    "word": "red",
+    "onset": "r",
+    "rime": "ed",
+    "family": "-ed",
+    "stage": 5,
+    "note": "形容詞例外;圖用單一紅色顏料罐/紅色色塊表達顏色本身"
   }
 ]
