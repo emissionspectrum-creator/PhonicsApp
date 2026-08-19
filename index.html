@@ -362,7 +362,14 @@
     return [w.rime.slice(0, i), w.rime.slice(i)];
   }
 
-  // 第一層是教學點:同母音、異尾子音(sick → sit/sing/sink),不問階段
+  // 挖 onset 時的第 1 層:onset 是 target onset 的單一成分(stop → top、swing → sing/wing),
+  // 不問階段。target 是單字母 onset 時必然為空,階段 1-5 因此與改版前完全相同
+  function onsetComponents(target, others) {
+    return others.filter((w) => w.onset.length === 1
+      && target.onset.length > 1 && target.onset.includes(w.onset));
+  }
+
+  // 挖 rime 時的第一層是教學點:同母音、異尾子音(sick → sit/sing/sink),不問階段
   function rankDistractors(target, others) {
     const [vowel, coda] = rimeParts(target);
     const tiers = [[], [], []];
@@ -629,9 +636,11 @@
     const rounds = shuffle(items).map((target) => {
       const others = pool.filter((w) => w.word !== target.word);
       const n = Math.min(optionCount - 1, others.length);
+      const tier1 = rimeMode ? [] : onsetComponents(target, others);
       const distractors = rimeMode
         ? rankDistractors(target, others).slice(0, n)
-        : sample(others, n);
+        : [...shuffle(tier1), ...sample(others.filter((w) => !tier1.includes(w)), n)]
+            .slice(0, n);
       const options = [target, ...distractors].sort(
         (a, b) => slotIndex.get(keyAt(a)) - slotIndex.get(keyAt(b))
       );

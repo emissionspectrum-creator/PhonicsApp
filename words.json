@@ -171,6 +171,33 @@
     "zh": "搖尾巴"
   },
   {
+    "word": "ham",
+    "onset": "h",
+    "rime": "am",
+    "family": "-am",
+    "stage": 1,
+    "note": "階段八回頭補開 -am 家族時追加;圖為單片圓形火腿",
+    "zh": "火腿"
+  },
+  {
+    "word": "jam",
+    "onset": "j",
+    "rime": "am",
+    "family": "-am",
+    "stage": 1,
+    "note": "階段八回頭補開 -am 家族時追加;選定草莓果醬,罐身不可有標籤文字",
+    "zh": "果醬"
+  },
+  {
+    "word": "dam",
+    "onset": "d",
+    "rime": "am",
+    "family": "-am",
+    "stage": 1,
+    "note": "水壩;-am 家族第三字,使用者裁定;畫混凝土壩體與蓄水,不畫水力發電廠房",
+    "zh": "水壩"
+  },
+  {
     "word": "pig",
     "onset": "p",
     "rime": "ig",
@@ -925,5 +952,203 @@
     "stage": 7,
     "note": "斜坡;需搭配滑板才能辨識,屬單一物件規則的例外",
     "zh": "斜坡"
+  },
+  {
+    "word": "stick",
+    "onset": "st",
+    "rime": "ick",
+    "family": "-ick",
+    "stage": 8,
+    "note": "成分字 sick 在庫;與同階段 twig 以粗細、有無分叉葉片區隔",
+    "zh": "棍子"
+  },
+  {
+    "word": "stamp",
+    "onset": "st",
+    "rime": "amp",
+    "family": "-amp",
+    "stage": 8,
+    "note": "無成分字,屬破例收錄;票面不可有文字或數字",
+    "zh": "郵票"
+  },
+  {
+    "word": "stop",
+    "onset": "st",
+    "rime": "op",
+    "family": "-op",
+    "stage": 8,
+    "note": "動詞,破例;成分字 top 在庫但 top 已定義為「頂端」。圖採紅色八角標誌並含 STOP 字樣,與風格描述 no text/no letters 牴觸,為使用者裁定",
+    "zh": "停"
+  },
+  {
+    "word": "stump",
+    "onset": "st",
+    "rime": "ump",
+    "family": "-ump",
+    "stage": 8,
+    "note": "無成分字;台灣孩子生活經驗中等,具體度高",
+    "zh": "樹樁"
+  },
+  {
+    "word": "stand",
+    "onset": "st",
+    "rime": "and",
+    "family": "-and",
+    "stage": 8,
+    "note": "動詞,破例;成分字 sand 在庫。畫面為男孩直立站姿,與階段二 sit 構成動作對比",
+    "zh": "站"
+  },
+  {
+    "word": "clock",
+    "onset": "cl",
+    "rime": "ock",
+    "family": "-ock",
+    "stage": 8,
+    "note": "成分字 lock 在庫;鐘面含 1–12 數字,為使用者裁定的風格例外(數字非字母)",
+    "zh": "時鐘"
+  },
+  {
+    "word": "clip",
+    "onset": "cl",
+    "rime": "ip",
+    "family": "-ip",
+    "stage": 8,
+    "note": "成分字 lip 在庫;需與階段二 pin(大頭針)、階段七 tack(圖釘)以彎折線圈造型明確區隔",
+    "zh": "迴紋針"
+  },
+  {
+    "word": "clap",
+    "onset": "cl",
+    "rime": "ap",
+    "family": "-ap",
+    "stage": 8,
+    "note": "動詞,破例;成分字 cap 在庫。畫面為一雙手掌相擊加動作線,雙手視為單一主體",
+    "zh": "拍手"
+  },
+  {
+    "word": "clam",
+    "onset": "cl",
+    "rime": "am",
+    "family": "-am",
+    "stage": 8,
+    "note": "無成分字;-am 為階段八新開家族(ham/jam/clam)",
+    "zh": "蛤蜊"
+  },
+  {
+    "word": "spot",
+    "onset": "sp",
+    "rime": "ot",
+    "family": "-ot",
+    "stage": 8,
+    "note": "同形異義,選定「斑點」(非地點)。成分字 pot 在庫。以大麥町犬呈現以避免與階段三 dot(單一圓點)混淆,屬單一物件規則例外",
+    "zh": "斑點"
+  },
+  {
+    "word": "spin",
+    "onset": "sp",
+    "rime": "in",
+    "family": "-in",
+    "stage": 8,
+    "note": "動詞,破例;成分字 pin 在庫。以陀螺加動作線呈現(top 已定為「頂端」,無衝突);-in 家族因此達 7 字,為上限例外",
+    "zh": "旋轉"
+  },
+  {
+    "word": "snack",
+    "onset": "sn",
+    "rime": "ack",
+    "family": "-ack",
+    "stage": 8,
+    "note": "成分字 sack 在庫;sn- 唯一收錄字,比照 swing/plug 單字破例。-ack 家族因此達 7 字,為上限例外",
+    "zh": "點心"
+  },
+  {
+    "word": "block",
+    "onset": "bl",
+    "rime": "ock",
+    "family": "-ock",
+    "stage": 8,
+    "note": "成分字 lock 在庫;以單一立方體呈現以符合單一物件規則",
+    "zh": "積木"
+  },
+  {
+    "word": "black",
+    "onset": "bl",
+    "rime": "ack",
+    "family": "-ack",
+    "stage": 8,
+    "note": "形容詞,破例;無成分字。比照階段五 red、階段七 pink,以單一顏料罐表達顏色本身",
+    "zh": "黑色"
+  },
+  {
+    "word": "track",
+    "onset": "tr",
+    "rime": "ack",
+    "family": "-ack",
+    "stage": 8,
+    "note": "同形異義,選定「鐵軌」(非跑道/足跡)。成分字 tack 與 rack 皆在庫,為本階段成分覆蓋最完整者",
+    "zh": "軌道"
+  },
+  {
+    "word": "trap",
+    "onset": "tr",
+    "rime": "ap",
+    "family": "-ap",
+    "stage": 8,
+    "note": "「陷阱」過於抽象,選定具體物「捕鼠器」。成分字 tap 在庫。需加一小塊起司才能辨識,屬單一物件規則例外",
+    "zh": "捕鼠器"
+  },
+  {
+    "word": "twig",
+    "onset": "tw",
+    "rime": "ig",
+    "family": "-ig",
+    "stage": 8,
+    "note": "成分字 wig 在庫;與同階段 stick(棍子)以細長、分叉、帶葉造型區隔",
+    "zh": "小樹枝"
+  },
+  {
+    "word": "twin",
+    "onset": "tw",
+    "rime": "in",
+    "family": "-in",
+    "stage": 8,
+    "note": "成分字 win 在庫;畫面為兩位長相相同、衣服顏色不同的女孩,屬單一物件規則的例外(使用者指定)",
+    "zh": "雙胞胎"
+  },
+  {
+    "word": "flag",
+    "onset": "fl",
+    "rime": "ag",
+    "family": "-ag",
+    "stage": 8,
+    "note": "無成分字,破例收錄;旗面須為純色,不可有國徽、圖案或文字",
+    "zh": "旗子"
+  },
+  {
+    "word": "flat",
+    "onset": "fl",
+    "rime": "at",
+    "family": "-at",
+    "stage": 8,
+    "note": "形容詞,破例;成分字 fat 在庫,fat/flat 為本階段最佳最小對比。以洩氣壓扁的球呈現。-at 家族因此達 7 字,為上限例外",
+    "zh": "扁的"
+  },
+  {
+    "word": "swing",
+    "onset": "sw",
+    "rime": "ing",
+    "family": "-ing",
+    "stage": 8,
+    "note": "同形異義,選定「鞦韆」(非動詞擺盪)。成分字 wing 在庫;sw- 唯一收錄字,單字破例",
+    "zh": "鞦韆"
+  },
+  {
+    "word": "plug",
+    "onset": "pl",
+    "rime": "ug",
+    "family": "-ug",
+    "stage": 8,
+    "note": "成分字 pug 在庫;pl- 唯一收錄字,單字破例。-ug 家族因此達 7 字,為上限例外",
+    "zh": "插頭"
   }
 ]
