@@ -186,6 +186,7 @@
   #stage.solved #reveal {
     transform: translate(-50%, 0);
   }
+  #reveal.no-anim { transition: none; }
   #reveal-image {
     display: block;
     width: 100%;
@@ -300,6 +301,7 @@
   const MIN_HEIGHT = 700;
   const CONTRAST_STAGE = 6;
   const MIN_CONTRAST_SIZE = 3;
+  const RIME_MODE_STAGES = new Set([7]);  // 挖整塊 rime 的階段(見 HANDOFF.md §B2)
 
   let words = [];
   let contrastSets = new Map();
@@ -329,8 +331,48 @@
       .classList.toggle('visible', window.innerHeight < MIN_HEIGHT);
   }
 
-  function letters(w) {
-    return [w.onset, ...w.rime];
+  function letters(w, wholeRime) {
+    return wholeRime ? [w.onset, w.rime] : [w.onset, ...w.rime];
+  }
+
+  // 一格可能不只一個字母(ick),逐字母上色
+  function paintUnit(el, unit) {
+    el.textContent = '';
+    for (const ch of unit) {
+      const span = document.createElement('span');
+      span.textContent = ch;
+      span.style.color = isVowel(ch) ? 'var(--vowel-color)' : 'var(--consonant-color)';
+      el.appendChild(span);
+    }
+  }
+
+  // 寬度隨字母數長,高度不變。單字母時不覆寫,樣式完全同以往
+  const UNIT_SIZE = { slot: [13, 4.2, 170, 55], option: [9, 2.6, 110, 34] };
+  function sizeUnit(el, len, kind) {
+    if (len <= 1) return;
+    const [vw, dvw, px, dpx] = UNIT_SIZE[kind];
+    el.style.width = `calc(${vw}vw + ${((len - 1) * dvw).toFixed(1)}vw)`;
+    el.style.maxWidth = `${px + (len - 1) * dpx}px`;
+  }
+
+  // 母音字母段 / 尾子音段。比的是字母不是音值:cap 與 cape 同屬母音段 a
+  function rimeParts(w) {
+    let i = 0;
+    while (i < w.rime.length && isVowel(w.rime[i])) i++;
+    return [w.rime.slice(0, i), w.rime.slice(i)];
+  }
+
+  // 第一層是教學點:同母音、異尾子音(sick → sit/sing/sink),不問階段
+  function rankDistractors(target, others) {
+    const [vowel, coda] = rimeParts(target);
+    const tiers = [[], [], []];
+    for (const w of others) {
+      const [v, c] = rimeParts(w);
+      if (v === vowel && c !== coda) tiers[0].push(w);
+      else if (Number(w.stage) === Number(target.stage)) tiers[1].push(w);
+      else tiers[2].push(w);
+    }
+    return tiers.flatMap(shuffle);
   }
 
   function buildContrastSets() {
@@ -351,6 +393,11 @@
     return String(stage) === String(CONTRAST_STAGE);
   }
 
+  // 選單值:「-ack」是字族(挖 onset),「s-」是開頭音(挖整塊 rime)
+  function isRimeMode(stage, name) {
+    return RIME_MODE_STAGES.has(Number(stage)) && name.endsWith('-');
+  }
+
   function buildStageSelect() {
     const stages = new Set(words.map((w) => w.stage));
     stages.add(CONTRAST_STAGE);
@@ -364,20 +411,36 @@
     }
   }
 
-  function buildFamilySelect(stage) {
-    const names = isContrastStage(stage)
-      ? [...contrastSets.keys()]
-      : [...new Set(
-          words.filter((w) => String(w.stage) === String(stage)).map((w) => w.family)
-        )].sort();
-    const select = document.getElementById('family-select');
-    select.innerHTML = '';
+  function addOptionGroup(select, names, groupLabel) {
+    const parent = groupLabel ? document.createElement('optgroup') : select;
+    if (groupLabel) parent.label = groupLabel;
     for (const name of names) {
       const opt = document.createElement('option');
       opt.value = name;
       opt.textContent = name;
-      select.appendChild(opt);
+      parent.appendChild(opt);
     }
+    if (groupLabel) select.appendChild(parent);
+  }
+
+  function buildFamilySelect(stage) {
+    const select = document.getElementById('family-select');
+    select.innerHTML = '';
+    if (isContrastStage(stage)) {
+      addOptionGroup(select, [...contrastSets.keys()]);
+      return;
+    }
+    const inStage = words.filter((w) => String(w.stage) === String(stage));
+    const families = [...new Set(inStage.map((w) => w.family))].sort();
+    if (!RIME_MODE_STAGES.has(Number(stage))) {
+      addOptionGroup(select, families);
+      return;
+    }
+    // 零 onset(ink)沒有開頭音可選,只從字族進去
+    const onsets = [...new Set(inStage.filter((w) => w.onset).map((w) => w.onset))]
+      .sort().map((o) => `${o}-`);
+    addOptionGroup(select, families, '字族(比開頭音)');
+    addOptionGroup(select, onsets, '開頭音(比字尾)');
   }
 
   function playWord(wordObj, onEnded) {
@@ -405,7 +468,7 @@
     const puzzle = document.getElementById('puzzle');
     puzzle.innerHTML = '';
 
-    const chars = letters(target);
+    const chars = session.unitsOf(target);
     const addSpacer = () => {
       const spacer = document.createElement('div');
       spacer.className = 'gap-spacer';
@@ -418,21 +481,31 @@
         const slot = document.createElement('div');
         slot.className = 'letter-slot placeholder';
         slot.id = 'blank-slot';
+        sizeUnit(slot, session.blankLen, 'slot');  // 固定取全 session 最長,免得寬度洩題
         puzzle.appendChild(slot);
         if (i < chars.length - 1) addSpacer();
         return;
       }
       const tile = document.createElement('div');
       tile.className = 'letter-tile';
-      tile.textContent = ch;
-      tile.style.color = isVowel(ch) ? 'var(--vowel-color)' : 'var(--consonant-color)';
+      sizeUnit(tile, ch.length, 'slot');
+      paintUnit(tile, ch);
       puzzle.appendChild(tile);
     });
 
     puzzle.classList.remove('bounce');
-    document.getElementById('reveal-image').removeAttribute('src');
+
+    const img = document.getElementById('reveal-image');
+    img.removeAttribute('src');
+    img.alt = '';  // 留著會在無 src 時顯示破圖 icon
     document.getElementById('reveal-note').textContent = '';
+
+    // 圖片只在進場時滑入。退場若也跟著滑,翻頁過程會看到它往下溜過去
+    const reveal = document.getElementById('reveal');
+    reveal.classList.add('no-anim');
     document.getElementById('stage').classList.remove('solved');
+    void reveal.offsetWidth;  // 強制回流,讓歸位在無動畫下完成
+    reveal.classList.remove('no-anim');
   }
 
   function renderOptions(options, target) {
@@ -443,8 +516,8 @@
       const ch = session.keyAt(opt);
       const tile = document.createElement('button');
       tile.className = 'option-tile';
-      tile.textContent = ch;
-      tile.style.color = isVowel(ch) ? 'var(--vowel-color)' : 'var(--consonant-color)';
+      sizeUnit(tile, ch.length, 'option');
+      paintUnit(tile, ch);
       tile.addEventListener('click', () => onOptionClick(opt, target, tile));
       row.appendChild(tile);
     }
@@ -472,9 +545,8 @@
 
     const ch = session.keyAt(opt);
     const slot = document.getElementById('blank-slot');
-    slot.textContent = ch;
+    paintUnit(slot, ch);
     slot.classList.remove('placeholder');
-    slot.style.color = isVowel(ch) ? 'var(--vowel-color)' : 'var(--consonant-color)';
 
     const puzzle = document.getElementById('puzzle');
     const spacers = [...puzzle.querySelectorAll('.gap-spacer')];
@@ -532,27 +604,41 @@
 
   function startSession(name, stage) {
     const contrast = isContrastStage(stage);
-    const items = contrast
-      ? contrastSets.get(name)
-      : words.filter((w) => w.family === name && w.stage <= Number(stage));
-    if (!items || !items.length) return;
+    const rimeMode = isRimeMode(stage, name);
+    // 挖 rime 時 target 只限本階段,干擾項可用同 onset 的任何舊字
+    let items, pool;
+    if (contrast) {
+      items = pool = contrastSets.get(name) || [];
+    } else if (rimeMode) {
+      const onset = name.slice(0, -1);
+      pool = words.filter((w) => w.onset === onset && w.stage <= Number(stage));
+      items = pool.filter((w) => Number(w.stage) === Number(stage));
+    } else {
+      items = pool = words.filter((w) => w.family === name && w.stage <= Number(stage));
+    }
+    if (!items.length || pool.length < 2) return;
 
-    const blankIndex = contrast ? 1 : 0;
-    const keyAt = (w) => letters(w)[blankIndex];
-    const slotIndex = new Map(shuffle(items).map((w, i) => [keyAt(w), i]));
-    const optionCount = Math.min(4, items.length);
+    const blankIndex = contrast || rimeMode ? 1 : 0;
+    const unitsOf = (w) => letters(w, rimeMode);
+    const keyAt = (w) => unitsOf(w)[blankIndex];
+    const slotIndex = new Map(shuffle(pool).map((w, i) => [keyAt(w), i]));
+    const optionCount = Math.min(4, pool.length);
+    const blankLen = Math.max(...pool.map((w) => keyAt(w).length));
 
     // 選項在此一次抽定,前後翻頁時同一題永遠長得一樣
     const rounds = shuffle(items).map((target) => {
-      const others = items.filter((w) => w.word !== target.word);
-      const distractors = sample(others, Math.min(optionCount - 1, others.length));
+      const others = pool.filter((w) => w.word !== target.word);
+      const n = Math.min(optionCount - 1, others.length);
+      const distractors = rimeMode
+        ? rankDistractors(target, others).slice(0, n)
+        : sample(others, n);
       const options = [target, ...distractors].sort(
         (a, b) => slotIndex.get(keyAt(a)) - slotIndex.get(keyAt(b))
       );
       return { target, options };
     });
 
-    session = { items, blankIndex, keyAt, slotIndex, rounds, roundIndex: 0 };
+    session = { items, pool, blankIndex, unitsOf, keyAt, slotIndex, blankLen, rounds, roundIndex: 0 };
     renderRound();
   }
 

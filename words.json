@@ -664,5 +664,266 @@
     "stage": 5,
     "note": "形容詞例外;圖用單一紅色顏料罐/紅色色塊表達顏色本身",
     "zh": "紅色"
+  },
+  {
+    "word": "pack",
+    "onset": "p",
+    "rime": "ack",
+    "family": "-ack",
+    "stage": 7,
+    "note": "同形異義,選定「背包」(非動詞打包)",
+    "zh": "背包"
+  },
+  {
+    "word": "sack",
+    "onset": "s",
+    "rime": "ack",
+    "family": "-ack",
+    "stage": 7,
+    "note": "麻布袋;與階段一 bag 以材質與束口造型區隔",
+    "zh": "麻布袋"
+  },
+  {
+    "word": "tack",
+    "onset": "t",
+    "rime": "ack",
+    "family": "-ack",
+    "stage": 7,
+    "note": "圖釘;與階段二 pin(大頭針)以扁圓頭造型區隔",
+    "zh": "圖釘"
+  },
+  {
+    "word": "rack",
+    "onset": "r",
+    "rime": "ack",
+    "family": "-ack",
+    "stage": 7,
+    "note": "選定意義:掛勾架(掛衣帽用),非其他架類",
+    "zh": "掛勾架"
+  },
+  {
+    "word": "kick",
+    "onset": "k",
+    "rime": "ick",
+    "family": "-ick",
+    "stage": 7,
+    "note": "動詞,破例;畫面為男孩踢球瞬間",
+    "zh": "踢"
+  },
+  {
+    "word": "sick",
+    "onset": "s",
+    "rime": "ick",
+    "family": "-ick",
+    "stage": 7,
+    "note": "形容詞,破例;畫面為男孩躺床額頭放冰袋,屬單一物件規則的例外",
+    "zh": "生病"
+  },
+  {
+    "word": "lick",
+    "onset": "l",
+    "rime": "ick",
+    "family": "-ick",
+    "stage": 7,
+    "note": "動詞,破例;畫面為男孩舔冰淇淋",
+    "zh": "舔"
+  },
+  {
+    "word": "lock",
+    "onset": "l",
+    "rime": "ock",
+    "family": "-ock",
+    "stage": 7,
+    "note": "掛鎖",
+    "zh": "鎖"
+  },
+  {
+    "word": "rock",
+    "onset": "r",
+    "rime": "ock",
+    "family": "-ock",
+    "stage": 7,
+    "note": "石頭",
+    "zh": "石頭"
+  },
+  {
+    "word": "sock",
+    "onset": "s",
+    "rime": "ock",
+    "family": "-ock",
+    "stage": 7,
+    "note": "襪子",
+    "zh": "襪子"
+  },
+  {
+    "word": "dock",
+    "onset": "d",
+    "rime": "ock",
+    "family": "-ock",
+    "stage": 7,
+    "note": "碼頭;需最小限度水面才能辨識,屬無背景規則的例外",
+    "zh": "碼頭"
+  },
+  {
+    "word": "king",
+    "onset": "k",
+    "rime": "ing",
+    "family": "-ing",
+    "stage": 7,
+    "note": "國王",
+    "zh": "國王"
+  },
+  {
+    "word": "ring",
+    "onset": "r",
+    "rime": "ing",
+    "family": "-ing",
+    "stage": 7,
+    "note": "同形異義,選定「戒指」(非鈴響)",
+    "zh": "戒指"
+  },
+  {
+    "word": "wing",
+    "onset": "w",
+    "rime": "ing",
+    "family": "-ing",
+    "stage": 7,
+    "note": "翅膀;同 fin,需以整隻鳥呈現才能辨識部位",
+    "zh": "翅膀"
+  },
+  {
+    "word": "sing",
+    "onset": "s",
+    "rime": "ing",
+    "family": "-ing",
+    "stage": 7,
+    "note": "動詞,破例;畫面為男孩拿麥克風加音符,屬單一物件規則的例外",
+    "zh": "唱歌"
+  },
+  {
+    "word": "ink",
+    "onset": "",
+    "rime": "ink",
+    "family": "-ink",
+    "stage": 7,
+    "note": "墨水;零 onset(母音開頭),同 ox/up 前例",
+    "zh": "墨水"
+  },
+  {
+    "word": "sink",
+    "onset": "s",
+    "rime": "ink",
+    "family": "-ink",
+    "stage": 7,
+    "note": "同形異義,選定「洗手台」(非下沉);含水龍頭,與階段一 tap 以整體洗手台造型區隔",
+    "zh": "洗手台"
+  },
+  {
+    "word": "pink",
+    "onset": "p",
+    "rime": "ink",
+    "family": "-ink",
+    "stage": 7,
+    "note": "形容詞,破例;同階段五 red 處理方式,以單一顏料罐表達顏色本身",
+    "zh": "粉紅色"
+  },
+  {
+    "word": "link",
+    "onset": "l",
+    "rime": "ink",
+    "family": "-ink",
+    "stage": 7,
+    "note": "鏈環;需三環相扣才能辨識,屬單一物件規則的例外",
+    "zh": "鏈環"
+  },
+  {
+    "word": "hand",
+    "onset": "h",
+    "rime": "and",
+    "family": "-and",
+    "stage": 7,
+    "note": "手",
+    "zh": "手"
+  },
+  {
+    "word": "sand",
+    "onset": "s",
+    "rime": "and",
+    "family": "-and",
+    "stage": 7,
+    "note": "沙;不可數,以裝滿沙的沙灘桶呈現",
+    "zh": "沙"
+  },
+  {
+    "word": "band",
+    "onset": "b",
+    "rime": "and",
+    "family": "-and",
+    "stage": 7,
+    "note": "同形異義,選定「髮圈」(非樂團)",
+    "zh": "髮圈"
+  },
+  {
+    "word": "jump",
+    "onset": "j",
+    "rime": "ump",
+    "family": "-ump",
+    "stage": 7,
+    "note": "動詞,破例;畫面為男孩雙腳離地跳起,與階段三 hop(兔子)區隔",
+    "zh": "跳"
+  },
+  {
+    "word": "pump",
+    "onset": "p",
+    "rime": "ump",
+    "family": "-ump",
+    "stage": 7,
+    "note": "打氣筒",
+    "zh": "打氣筒"
+  },
+  {
+    "word": "lump",
+    "onset": "l",
+    "rime": "ump",
+    "family": "-ump",
+    "stage": 7,
+    "note": "塊狀物;概念偏抽象,以一團麵團呈現",
+    "zh": "塊狀物"
+  },
+  {
+    "word": "hump",
+    "onset": "h",
+    "rime": "ump",
+    "family": "-ump",
+    "stage": 7,
+    "note": "駝峰;需以整隻駱駝呈現才能辨識部位",
+    "zh": "駝峰"
+  },
+  {
+    "word": "lamp",
+    "onset": "l",
+    "rime": "amp",
+    "family": "-amp",
+    "stage": 7,
+    "note": "檯燈",
+    "zh": "檯燈"
+  },
+  {
+    "word": "camp",
+    "onset": "c",
+    "rime": "amp",
+    "family": "-amp",
+    "stage": 7,
+    "note": "同形異義,選定「營地/帳篷」(非動詞露營)",
+    "zh": "營地"
+  },
+  {
+    "word": "ramp",
+    "onset": "r",
+    "rime": "amp",
+    "family": "-amp",
+    "stage": 7,
+    "note": "斜坡;需搭配滑板才能辨識,屬單一物件規則的例外",
+    "zh": "斜坡"
   }
 ]
