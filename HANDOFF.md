@@ -355,15 +355,42 @@ w_g(wag wig)      b_n(bin bun)
 
 **③ 階段九字尾 digraph 挑 onset 湊得滿的。** f-（fan / fat / fig / fin / fox）配 fish、w-（wag / wet / wig / win / wing）配 wish，一進來就成組。
 
+**④ 階段八、九字首挑「成分字已在庫」的 blend／digraph。** 這是模式 A 第 1 層的選字面：stop 的教學價值在 top（st 對 t），沒有 top 就沒有第 1 層。用現有 103 字掃過，**18 個可成組**：
+
+```
+stop(top)    spot(pot)     stick(sick)   swing(sing wing)  stand(sand)
+slip(lip)    flip(lip)     clip(lip)     spin(pin)         twin(win)
+drag(rag)    brag(bag rag) snack(sack)   track(tack rack)  crack(rack)
+clock(lock)  block(lock)   clap(cap)
+```
+
+**成分字不在庫、目前成不了組：** flag、trip、skip、sled、stamp（`-ip` 家族只有 dip/hip/lip/pip/zip，沒有 tip 也沒有 sip）。正式進階段八時再完整盤點，此處先確立約束。
+
 ### 干擾項分層（程式端規則，列在此供選字時參考）
 
-模式 C 的題目，選項依序這樣抽：
+選項依序這樣抽，三層都在**同 onset**（模式 C）或**同字族**（模式 A）的前提下運作：
 
-1. **同 onset，且與 target 只差一個維度**（母音或尾子音其一）—— 教學點，**不問階段**，抽 1–2 個
-2. 同 target 階段、同 onset
-3. 其餘同 onset（任何階段）
+1. **第 1 層＝教學點，不問階段，抽 1–2 個**（定義隨模式而變，見下表）
+2. 同 target 階段的其他字
+3. 其餘（任何階段）
 
-第 1 層不問階段是必要的：cape 最該有的干擾項是 cap（階段一），sick 最該有的是 sit（階段一）。若「同階段優先」，這兩個教學點都會被排到最後。第 1 層只抽 1–2 個，是為了保留難度梯度——cape 對 cap 差異太大，全靠第 1 層會太簡單。
+**第 1 層的定義由模式決定——挖哪一格，就變哪一格：**
+
+| 模式 | 用在 | 第 1 層＝ | 例 |
+| --- | --- | --- | --- |
+| **A** | 8、9 字首 | 同字族，onset 是 target onset 的**單一成分** | stop → top、swing → sing / wing、ship → hip |
+| **A** | 1–5 | 不必分層（同字族本來就只差 onset） | — |
+| **B** | 6、11 | 同 onset，**同尾子音、異母音** | cat → cot / cut / coat |
+| **C** | 7、9 字尾、10 | 同 onset，**同母音、異尾子音** | sick → sit / sing / sink、cape → cap |
+
+**第 1 層不問階段是必要的**：cape 最該有的干擾項是 cap（階段一），sick 最該有的是 sit（階段一），stop 最該有的是 top（階段三）。若「同階段優先」，這些教學點全會被排到最後。第 1 層只抽 1–2 個，是為了保留難度梯度——cape 對 cap 差異太大，全靠第 1 層會太簡單。
+
+**兩條實作上不可省的前提：**
+
+1. **切法**：`母音段 = rime 開頭的連續母音字母`，`尾子音段 = 其餘`。所以 `ape` 拆成 `a` ＋ `pe`，cap(`a`|`p`) 對 cape(`a`|`pe`) 自動落在「同母音、異尾子音」，magic e 不必另開特例。
+2. **「同母音」是同母音字母段，不是同母音音值。** cap /æ/ 和 cape /eɪ/ 的音值完全不同，若拿音值比對，階段十的第 1 層會全部落空。階段七剛好字母與音值一致，測不出這個錯；階段十才會爆。
+
+**第 1 層可以是空的。** 現有 103 字實測：28 個模式 C target 裡有 6 個（lock、rock、sock、ring、lump、lamp）湊不出同母音的同伴——例如 s- 底下母音 o 的字只有 sock。這 6 個自然往第 2 層落，候選池和不分層時一樣，**不需要為此補字**。
 
 ---
 
