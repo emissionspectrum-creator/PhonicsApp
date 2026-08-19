@@ -254,7 +254,8 @@ DESIGN.md §7.2 的範例字列了幾個 words.json 裡沒有的字。不是錯�
 
 # 第二部分：階段七以後的資料契約
 
-**日期：** 2026-08-19　**狀態：** 階段編號 7–11 已由家長確認採用，程式端契約已實作並通過測試。
+**日期：** 2026-08-19（2026-08-19 修訂：補 B2 題型模式與選字約束、七欄 schema、階段七定案清單）
+**狀態：** 階段編號 7–11 已由家長確認採用。階段七 29 字已入庫；**階段七的模式 C 題型程式端尚未實作**。
 
 回答五個問題：schema 是否要變、各階段題型、family 的意義、對比組去留、不要產出什麼。
 
@@ -264,7 +265,7 @@ DESIGN.md §7.2 的範例字列了幾個 words.json 裡沒有的字。不是錯�
 
 | stage | 內容 | 例 |
 | --- | --- | --- |
-| 7 | 字尾雙子音 -ck, -ll, -ss, -ng | duck, bell, kiss, sing |
+| 7 | 字尾子音組 -ck, -ng, -nk, -nd, -mp | sick, sing, sink, hand, jump |
 | 8 | 開頭子音串 st-, fl-, gr-… | stop, flag, grab |
 | 9 | 子音 digraph sh, ch, th, wh（字首與字尾） | ship, chin, fish |
 | 10 | magic e | cake, kite, rope |
@@ -272,21 +273,99 @@ DESIGN.md §7.2 的範例字列了幾個 words.json 裡沒有的字。不是錯�
 
 **`stage: 6` 保留、永遠不寫入 words.json** —— 它是程式合成的母音對比階段（第一部分 §3）。新資料從 7 起跳。
 
--ck 嚴格說是 digraph（一音兩字母），但歸在階段七：它和 -ll、-ss 一樣是「短母音後的字尾拼法規則」，不引入新的字首音；階段九的 sh/ch/th/wh 才是引入新音的組。
+-ck 嚴格說是 digraph（一音兩字母），但歸在階段七：它是「短母音後的字尾拼法規則」，不引入新的字首音；階段九的 sh/ch/th/wh 才是引入新音的組。
+
+**階段七已定案：8 族 29 字，已寫入 words.json。**
+
+| family | 字 |
+| --- | --- |
+| -ack | pack, sack, tack, rack |
+| -ick | kick, sick, lick |
+| -ock | lock, rock, sock, dock |
+| -ing | king, ring, wing, sing |
+| -ink | ink, sink, pink, link |
+| -and | hand, sand, band |
+| -ump | jump, pump, lump, hump |
+| -amp | lamp, camp, ramp |
+
+- **-ll、-ss 移到階段九**（bell、kiss 與 sh/ch/th 同屬「字尾拼法」組）。
+- **-ong、-uck、-eck、-ank 整族排除**，不再產出。
 
 ## B. schema：完全不變
 
-六欄照舊，三條不變式照舊（`onset + rime === word`；`rime[0]` 是 a/e/i/o/u；`onset` 可為空字串但不可省略）。逐階段驗證過：
+**七欄**照舊，三條不變式照舊（`onset + rime === word`；`rime[0]` 是 a/e/i/o/u；`onset` 可為空字串但不可省略）。逐階段驗證過：
 
 | 階段 | 例 | onset | rime | 備註 |
 | --- | --- | --- | --- | --- |
-| 7 | duck | `d` | `uck` | 尾子音 = `ck` |
+| 7 | sick | `s` | `ick` | 尾子音 = `ck` |
 | 8 | stop | `st` | `op` | onset 是完整子音串 |
 | 9 | ship / fish | `sh` / `f` | `ip` / `ish` | 字首、字尾 digraph 皆可 |
 | 10 | cake | `c` | `ake` | `rime[0]`='a' 仍是母音 |
 | 11 | rain | `r` | `ain` | 母音單位是 `ai`，見 D 節的排除規則 |
 
-**不新增任何欄位。** `pattern` / `vowel` / `coda` 都可從 onset/rime 推導，存進檔案就是第二份會走鐘的真相；`blank_index` 是題型的屬性不是字的屬性，由程式依階段決定。
+**七欄是：** `word`、`onset`、`rime`、`family`、`stage`、`note`、`zh`。兩個文字欄分工不同，兩個都要給：
+
+| 欄 | 給誰看 | 可否為空 | 例（sack） |
+| --- | --- | --- | --- |
+| `note` | 產字者／畫圖者，用來辨義與避免撞字 | 可為空字串 | `麻布袋;與階段一 bag 以材質與束口造型區隔` |
+| `zh` | **孩子**，揭曉時滑鼠停留顯示的中文提示 | **不可為空** | `麻布袋` |
+
+`zh` 是後加的欄位（commit 267882b），舊版契約漏寫，導致階段七交來的 29 筆只有六欄、得由 Claude Code 從 `note` 反推。**從階段八起，`zh` 請隨字一起給。**
+
+**不新增任何其他欄位。** `pattern` / `vowel` / `coda` 都可從 onset/rime 推導，存進檔案就是第二份會走鐘的真相；`blank_index` 是題型的屬性不是字的屬性，由程式依階段決定。
+
+## B2. 題型模式與選字約束（**產字之前必讀**）
+
+原契約用「語言學內容」定義階段（階段七＝字尾子音組），卻默認題型恆為「挖 onset」。這個默認在階段七破功——字產完才發現 29 字裡有 11 個永遠當不了題目。補上的規則是：
+
+> **挖空的格子，必須正好落在該階段要教的那個單位上。**
+
+依這條推下去，模式只有三種：
+
+| 模式 | 挖哪一格 | 用在 |
+| --- | --- | --- |
+| **A** | onset 磚 | 階段 1–5、7（字族選單）、8、9 字首 |
+| **B** | rime 裡的母音單位 | 階段 6（1 字母）、11（1–2 字母） |
+| **C** | 整塊 rime 磚 | 階段 7（開頭音選單）、9 字尾、10 |
+
+### 模式決定選字約束
+
+**這張表要在挑字之前套用，不是挑完字才驗。** 階段七整件事唯一真正的教訓，不是字挑錯了，是挑字時不知道題型長什麼樣。
+
+| 模式 | 選字時必須湊滿的組 | 備註 |
+| --- | --- | --- |
+| A | 同 **rime 家族** ≥ 3 | 現行規則，一直都對 |
+| C | 同 **onset** ≥ 3，**且其中至少 1 個與 target 只差一個維度** | 階段七缺的就是這條 |
+| B | 同 **onset ＋尾子音骨架** ≥ 3 | 尚未用過 |
+
+「只差一個維度」＝ 母音相同而尾子音不同（sick / sing），或尾子音相同而母音不同（cap / cape、lick / lock）。沒有這個同伴，選項湊滿 3 個也只是亂猜，題目沒有教學點。
+
+### 三條可以直接照做的選字結論（已用現有 103 字驗證）
+
+**① 階段十一選 `coat`，不選 `boat`。** 骨架 `c_t` 已有 cat / cot / cut，coat 一插進去就是四選一的母音單位對比；`b_t` 只有 bat，boat 進來是孤字。**階段十一請直接照這 16 個骨架挑字，不要重新盤點：**
+
+```
+b_g(bag big bug)  c_t(cat cot cut)  h_t(hat hit hot hut)  p_n(pan pen pin)
+p_p(pip pop pup)  p_t(pet pit pot)  c_p(cap cup)  f_n(fan fin)  h_p(hip hop)
+m_p(map mop)      n_t(net nut)      p_g(pig pug)  r_g(rag rug)  t_p(tap top)
+w_g(wag wig)      b_n(bin bun)
+```
+
+**② 階段十優先挑「短母音字已在庫」的。** cape / tape / kite / hope / pine / cute / cane / mane / rate / mate / pipe / dine / site —— cap、tap、kit、hop、pin、cut、can、man、rat、mat、pip、din、sit 全部已在 words.json，配對題天然成立。
+
+**③ 階段九字尾 digraph 挑 onset 湊得滿的。** f-（fan / fat / fig / fin / fox）配 fish、w-（wag / wet / wig / win / wing）配 wish，一進來就成組。
+
+### 干擾項分層（程式端規則，列在此供選字時參考）
+
+模式 C 的題目，選項依序這樣抽：
+
+1. **同 onset，且與 target 只差一個維度**（母音或尾子音其一）—— 教學點，**不問階段**，抽 1–2 個
+2. 同 target 階段、同 onset
+3. 其餘同 onset（任何階段）
+
+第 1 層不問階段是必要的：cape 最該有的干擾項是 cap（階段一），sick 最該有的是 sit（階段一）。若「同階段優先」，這兩個教學點都會被排到最後。第 1 層只抽 1–2 個，是為了保留難度梯度——cape 對 cap 差異太大，全靠第 1 層會太簡單。
+
+---
 
 ## C. 各階段題型與 family 的意義
 
@@ -294,14 +373,18 @@ DESIGN.md §7.2 的範例字列了幾個 words.json 裡沒有的字。不是錯�
 
 **session 規則（已實作）：選單列出「含該階段字」的字族；session 內容 = 該字族中 `stage ≤ 所選階段` 的字。** 所以階段三選 -op 只有 top/mop/hop/pop；階段八選 -op 是這四個加 stop —— rime 固定、onset 混入子音串，正是「一次只動一個變數」。
 
-| 階段 | 題型 | 程式改動 |
-| --- | --- | --- |
-| 7 | 現有題型（選 onset），零改動 | 無 |
-| 8–9 | 同上；onset 磚顯示 `st`、`sh` 整塊 | 無（雙字母磚字級可能微調，視覺層） |
-| 10 | 字進來後，`-ake` 等字族立即可玩選 onset；cap↔cape 辨別題**尚未設計**，到時另開一輪 | 待設計 |
-| 11 | 同上，母音組合的顯色與辨音題**尚未設計** | 待設計 |
+| 階段 | 模式 | 題型 | 程式端 |
+| --- | --- | --- | --- |
+| 7 | **A ＋ C** | 字族選單（-ack）挖 onset；開頭音選單（s-）挖整塊 rime | 待實作 |
+| 8 | A | 現有題型；onset 磚顯示 `st` 整塊 | 無（雙字母磚字級可能微調，視覺層） |
+| 9 字首 sh/ch/th | A | 同上 | 無 |
+| 9 字尾 fish / bell / kiss | **C** | 挖整塊 rime，比 -ish / -ell / -iss | 同階段七，不需另設計 |
+| 10 magic e | **C** | `c` ＋ `[ap]` / `[ape]`；點錯播 cap（真字）就是辨別回饋 | 同階段七，不需另設計 |
+| 11 母音組合 | **B** | rime 內母音單位挖空，由程式合成（同階段六） | 對比組 key 推廣，見 D 節 |
 
-階段 10–11 的字可以先產、先進資料，不會壞任何東西。
+**階段 10–11 不需要第四種模式。** 原本預告的「cap↔cape 辨別題」與「母音組合辨音題」已分別由模式 C、B 涵蓋，兩項**結案**。
+
+階段 10–11 的字可以先產、先進資料，但**必須先照 B2 的選字約束挑字**。
 
 ## D. 對比組：繼續運作，不加開關
 
@@ -309,28 +392,32 @@ DESIGN.md §7.2 的範例字列了幾個 words.json 裡沒有的字。不是錯�
 
 唯一的排除規則（已實作）：**`rime` 第二個字元也是母音的字（rain、boat、feet）不入對比組** —— 它們的母音是兩個字母，不是單母音對比。
 
+**這條是階段六專用的保護措施，不是永久規則。** 到階段十一，對比組的 key 從「onset ＋ rime 去掉第一個字母」改成「onset ＋ rime 去掉**開頭的母音連續段**」，於是 cat / cot / cut / coat 全部落進 `c_t` 一組，母音單位對比題（模式 B）自動成立，本條排除規則整條刪除。
+
+**改動時機：等階段十一的字真的進庫再改。** 提早改會讓階段六的既有對比組意外變動。
+
 ## E. 不要產出的清單
 
 1. 不產 `stage: 6` 條目。
-2. 不發明新欄位；六欄一個都不能少（`note` 可為空字串）。
+2. 不發明新欄位；**七欄一個都不能少**（`note` 可為空字串，**`zh` 不可為空**）。
 3. onset 必須含完整子音串／digraph（ship → `sh` 不是 `s`）。自檢法：**rime 必須從第一個母音開始**。
 4. 不收 y 當母音的字（fly、my、play、day）—— 程式的母音表沒有 y。
 5. 不收 -all／-alk／wa- 開頭（ball、walk、want）—— 母音變音，同 DESIGN.md 的 -og 理由。
 6. magic e 只收規則的短→長對應；不收例外拼法（have、give、love、come、some、one、done）。
 7. 母音組合只收規則發音：ea 取 /iː/ 組（eat、sea），不收 bread、head；**同一 family 內母音發音必須一致**（-ood 會裂成 food /uː/ 對 good /ʊ/，這種拆開或擇一收）。
-8. 每個新 family 至少 3 個真字（與族下限一致）。
+8. 每個新 family 至少 3 個真字（族下限）；**並照 B2 的模式對應約束再驗一次**（模式 C 要同 onset ≥3、模式 B 要同骨架 ≥3）。只滿足族下限不夠——階段七就是這樣漏掉的。
 9. 不重複產出既有的字（現有清單以 words.json 為準）。
 
 ## F. 每階段一筆範例 JSON
 
 ```json
-{ "word": "duck", "onset": "d",  "rime": "uck", "family": "-uck", "stage": 7,  "note": "鴨子" }
-{ "word": "stop", "onset": "st", "rime": "op",  "family": "-op",  "stage": 8,  "note": "停止（手勢／標誌）" }
-{ "word": "ship", "onset": "sh", "rime": "ip",  "family": "-ip",  "stage": 9,  "note": "船" }
-{ "word": "cake", "onset": "c",  "rime": "ake", "family": "-ake", "stage": 10, "note": "" }
-{ "word": "rain", "onset": "r",  "rime": "ain", "family": "-ain", "stage": 11, "note": "雨" }
+{ "word": "sick", "onset": "s",  "rime": "ick", "family": "-ick", "stage": 7,  "note": "生病;畫發燒躺床,勿與 hurt 混淆", "zh": "生病" }
+{ "word": "stop", "onset": "st", "rime": "op",  "family": "-op",  "stage": 8,  "note": "停止;畫路牌不畫手勢",              "zh": "停止" }
+{ "word": "ship", "onset": "sh", "rime": "ip",  "family": "-ip",  "stage": 9,  "note": "大船;與階段一 boat 區隔",         "zh": "船" }
+{ "word": "cake", "onset": "c",  "rime": "ake", "family": "-ake", "stage": 10, "note": "",                                "zh": "蛋糕" }
+{ "word": "rain", "onset": "r",  "rime": "ain", "family": "-ain", "stage": 11, "note": "",                                "zh": "雨" }
 ```
 
 （實際交付時仍是一個 JSON 陣列，上面分行只為易讀。）
 
-**Project 可自檢的三條規則：** ① 每筆 `onset + rime === word`；② `rime` 第一個字元 ∈ a/e/i/o/u；③ `stage` ∈ {7,8,9,10,11} 且與 A 節的分類一致。交給 Claude Code 寫入時會再跑一次同樣的檢查。
+**Project 可自檢的四條規則：** ① 每筆 `onset + rime === word`；② `rime` 第一個字元 ∈ a/e/i/o/u；③ `stage` ∈ {7,8,9,10,11} 且與 A 節的分類一致；④ 七欄齊全且 `zh` 非空。交給 Claude Code 寫入時會再跑一次同樣的檢查。
