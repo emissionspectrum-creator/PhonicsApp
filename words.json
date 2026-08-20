@@ -1150,5 +1150,1130 @@
     "stage": 8,
     "note": "成分字 pug 在庫;pl- 唯一收錄字,單字破例。-ug 家族因此達 7 字,為上限例外",
     "zh": "插頭"
+  },
+  {
+    "word": "ship",
+    "onset": "sh",
+    "rime": "ip",
+    "family": "-ip",
+    "stage": 9,
+    "note": "sh- 模式 A 最佳字;成分字 hip 在庫。畫一般貨輪/客輪側視,不畫帆船以免與 sail 混淆",
+    "zh": "船"
+  },
+  {
+    "word": "shop",
+    "onset": "sh",
+    "rime": "op",
+    "family": "-op",
+    "stage": 9,
+    "note": "同形異義,選定「商店」(非動詞購物);成分字 hop 在庫。店面招牌不可有文字",
+    "zh": "商店"
+  },
+  {
+    "word": "shut",
+    "onset": "sh",
+    "rime": "ut",
+    "family": "-ut",
+    "stage": 9,
+    "note": "動詞,破例;成分字 hut 在庫。畫面為一扇緊閉的門,與階段四 cut 同屬動作類破例",
+    "zh": "關上"
+  },
+  {
+    "word": "shell",
+    "onset": "sh",
+    "rime": "ell",
+    "family": "-ell",
+    "stage": 9,
+    "note": "-ell 新家族;sh- 因此為 4 字,超出每 digraph 3 字上限,屬破例。模式 C 子條件未滿足(sh+e 無異尾子音字,若補 shed 可解),建議僅作 -ell 家族成員出題",
+    "zh": "貝殼"
+  },
+  {
+    "word": "chip",
+    "onset": "ch",
+    "rime": "ip",
+    "family": "-ip",
+    "stage": 9,
+    "note": "同形異義,選定「洋芋片」(非碎片/晶片);成分字 hip 在庫。畫單片波浪狀洋芋片",
+    "zh": "洋芋片"
+  },
+  {
+    "word": "chop",
+    "onset": "ch",
+    "rime": "op",
+    "family": "-op",
+    "stage": 9,
+    "note": "動詞,破例;成分字 hop 在庫。畫面為菜刀切下蔬菜的瞬間,與階段四 cut(剪刀剪紙)以工具區隔",
+    "zh": "剁"
+  },
+  {
+    "word": "chat",
+    "onset": "ch",
+    "rime": "at",
+    "family": "-at",
+    "stage": 9,
+    "note": "動詞且概念偏抽象,破例;成分字 cat 與 hat 皆在庫,為 ch- 中成分覆蓋最完整者。畫面為兩個對話泡泡,屬單一物件規則例外;泡泡內不可有文字。-at 家族因此達 8 字",
+    "zh": "聊天"
+  },
+  {
+    "word": "thumb",
+    "onset": "th",
+    "rime": "umb",
+    "family": "-umb",
+    "stage": 9,
+    "note": "使用者裁定收錄。兩項破例:(1) silent b,觸犯拼字不規則排除項;(2) -umb 家族僅此一字,不足模式 A 出題所需的 3 字,程式端只能作純認讀卡。th- 為清音 /θ/",
+    "zh": "大拇指"
+  },
+  {
+    "word": "thin",
+    "onset": "th",
+    "rime": "in",
+    "family": "-in",
+    "stage": 9,
+    "note": "形容詞,破例;成分字 tin/hin 皆不在庫,不滿足模式 A 約束(使用者裁定)。畫細瘦的鉛筆,與階段一 fat 及階段八 flat 構成對比。th- 為清音 /θ/。-in 家族因此達 8 字",
+    "zh": "瘦的"
+  },
+  {
+    "word": "thick",
+    "onset": "th",
+    "rime": "ick",
+    "family": "-ick",
+    "stage": 9,
+    "note": "形容詞,破例;成分字 tick/hick 皆不在庫,不滿足模式 A 約束(使用者裁定)。畫一本厚書側面。th- 為清音 /θ/",
+    "zh": "厚的"
+  },
+  {
+    "word": "whip",
+    "onset": "wh",
+    "rime": "ip",
+    "family": "-ip",
+    "stage": 9,
+    "note": "wh- 唯一收錄字,單字破例,比照階段八 sn-/sw-/pl-;成分字 hip 在庫。美式口音 wh- 多與 /w/ 合流,digraph 對比價值較 sh-/ch- 低。-ip 家族因此達 9 字",
+    "zh": "鞭子"
+  },
+  {
+    "word": "fish",
+    "onset": "f",
+    "rime": "ish",
+    "family": "-ish",
+    "stage": 9,
+    "note": "-ish 新家族;模式 C 對比桶 f_ 充足(fin 為同母音異尾子音)。與階段二 fin 為整體/部位關係,fin 畫整條魚並突顯背鰭,fish 畫一般側視魚",
+    "zh": "魚"
+  },
+  {
+    "word": "dish",
+    "onset": "d",
+    "rime": "ish",
+    "family": "-ish",
+    "stage": 9,
+    "note": "模式 C 對比桶 d_ 充足(dig/din/dip 同母音)。畫空的圓盤俯視,不放食物以免與 lunch 混淆",
+    "zh": "盤子"
+  },
+  {
+    "word": "wish",
+    "onset": "w",
+    "rime": "ish",
+    "family": "-ish",
+    "stage": 9,
+    "note": "抽象名詞/動詞,破例;-ish 需第三字才能成族。畫面為男孩雙手合十閉眼許願,比照階段二 win(男孩舉獎盃)以單一人物維持主體。對比桶 w_ 充足(wig/win 同母音)",
+    "zh": "許願"
+  },
+  {
+    "word": "cash",
+    "onset": "c",
+    "rime": "ash",
+    "family": "-ash",
+    "stage": 9,
+    "note": "-ash 新家族;對比桶 c_ 充足(cat/can/cap 同母音)。畫一疊鈔票加硬幣,鈔票上不可有文字或數字",
+    "zh": "現金"
+  },
+  {
+    "word": "trash",
+    "onset": "tr",
+    "rime": "ash",
+    "family": "-ash",
+    "stage": 9,
+    "note": "onset tr- 為階段八已教子音串,不引入新變數;成分覆蓋 trap/track 皆在庫。畫有蓋垃圾桶",
+    "zh": "垃圾"
+  },
+  {
+    "word": "flash",
+    "onset": "fl",
+    "rime": "ash",
+    "family": "-ash",
+    "stage": 9,
+    "note": "onset fl- 為階段八已教子音串;對比桶 fl_ 由 flag/flat 湊足。概念偏抽象,選定具體物「相機閃光燈」,以相機加放射光線呈現,屬單一物件規則例外",
+    "zh": "閃光燈"
+  },
+  {
+    "word": "lunch",
+    "onset": "l",
+    "rime": "unch",
+    "family": "-unch",
+    "stage": 9,
+    "note": "-unch 新家族(尾為 n+ch 三子音,難度較單純 digraph 高)。對比桶 l_ 充足(lump 同母音)。畫便當盒俯視,與 dish(空盤)區隔",
+    "zh": "午餐"
+  },
+  {
+    "word": "punch",
+    "onset": "p",
+    "rime": "unch",
+    "family": "-unch",
+    "stage": 9,
+    "note": "動詞,破例;對比桶 p_ 充足(pup/pump 同母音)。畫面為戴拳擊手套的手臂向前擊出加動作線",
+    "zh": "出拳"
+  },
+  {
+    "word": "bunch",
+    "onset": "b",
+    "rime": "unch",
+    "family": "-unch",
+    "stage": 9,
+    "note": "量詞概念,以具體物「一串葡萄」呈現;對比桶 b_ 充足(bug/bun 同母音)",
+    "zh": "一串"
+  },
+  {
+    "word": "catch",
+    "onset": "c",
+    "rime": "atch",
+    "family": "-atch",
+    "stage": 9,
+    "note": "-atch 新家族;-tch 為三字母(trigraph)非嚴格 digraph,使用者裁定納入。動詞,破例;對比桶 c_ 充足。畫面為雙手接住球的瞬間,與階段二 hit(揮棒)構成球類動作對比",
+    "zh": "接住"
+  },
+  {
+    "word": "match",
+    "onset": "m",
+    "rime": "atch",
+    "family": "-atch",
+    "stage": 9,
+    "note": "同形異義,選定「火柴」(非比賽/配對);對比桶 m_ 充足(mat/man/map 同母音)。畫單根火柴棒帶小火焰,不畫火柴盒以避免盒面文字",
+    "zh": "火柴"
+  },
+  {
+    "word": "patch",
+    "onset": "p",
+    "rime": "atch",
+    "family": "-atch",
+    "stage": 9,
+    "note": "同形異義,選定「衣服補丁」(非藥布/地塊);對比桶 p_ 充足(pan/pack 同母音)。需以布面加縫線呈現才能辨識,屬單一物件規則例外",
+    "zh": "補丁"
+  },
+  {
+    "word": "witch",
+    "onset": "w",
+    "rime": "itch",
+    "family": "-itch",
+    "stage": 9,
+    "note": "-itch 新家族;對比桶 w_ 充足(wig/win 同母音)。畫戴尖帽的女巫全身,不加掃帚以維持單一主體",
+    "zh": "女巫"
+  },
+  {
+    "word": "ditch",
+    "onset": "d",
+    "rime": "itch",
+    "family": "-itch",
+    "stage": 9,
+    "note": "對比桶 d_ 充足(dig/din/dip 同母音)。與階段二 pit(坑洞)以長條狀溝渠造型區隔;需最小限度地面才能辨識,屬無背景規則的例外,比照階段七 dock",
+    "zh": "水溝"
+  },
+  {
+    "word": "pitch",
+    "onset": "p",
+    "rime": "itch",
+    "family": "-itch",
+    "stage": 9,
+    "note": "同形異義,選定「投球」(非球場/音高);動詞,破例;對比桶 p_ 充足(pig/pin/pip/pit 同母音)。畫面為投手投球瞬間。備選字 switch(開關)具體度更高但 sw_ 僅 swing 一字,不滿足模式 C 而未取",
+    "zh": "投球"
+  },
+  {
+    "word": "bath",
+    "onset": "b",
+    "rime": "ath",
+    "family": "-ath",
+    "stage": 9,
+    "note": "-ath 新家族;美式 /bæθ/ 與 cat 同母音(英式 /ɑː/ 不採)。對比桶 b_ 充足(bat/bag 同母音)。畫四腳浴缸側視",
+    "zh": "浴缸"
+  },
+  {
+    "word": "path",
+    "onset": "p",
+    "rime": "ath",
+    "family": "-ath",
+    "stage": 9,
+    "note": "美式 /pæθ/;對比桶 p_ 充足(pan/pack 同母音)。畫蜿蜒的石板小徑,屬無背景規則的最小例外",
+    "zh": "小路"
+  },
+  {
+    "word": "math",
+    "onset": "m",
+    "rime": "ath",
+    "family": "-ath",
+    "stage": 9,
+    "note": "抽象名詞,破例;-ath 需第三字才能成族。畫面含阿拉伯數字與加號,與風格描述 no text/no letters 牴觸,比照階段七 clock(鐘面數字)與階段八 stop 之前例,需使用者確認",
+    "zh": "數學"
+  },
+  {
+    "word": "bell",
+    "onset": "b",
+    "rime": "ell",
+    "family": "-ell",
+    "stage": 9,
+    "note": "-ell 新家族;模式 C 對比桶 b_ 充足,bed 為同母音異尾子音。與階段七 ring 已定為「戒指」無衝突",
+    "zh": "鈴鐺"
+  },
+  {
+    "word": "well",
+    "onset": "w",
+    "rime": "ell",
+    "family": "-ell",
+    "stage": 9,
+    "note": "同形異義,選定「水井」(非副詞「好」);對比桶 w_ 充足,wet 為同母音異尾子音。畫圓形石砌井口加屋簷與吊桶",
+    "zh": "水井"
+  },
+  {
+    "word": "hill",
+    "onset": "h",
+    "rime": "ill",
+    "family": "-ill",
+    "stage": 9,
+    "note": "-ill 新家族;對比桶 h_ 充足,hip/hit 為同母音異尾子音。畫單一圓弧綠丘,與階段三 top(山頂加箭頭)以有無箭頭區隔",
+    "zh": "小山丘"
+  },
+  {
+    "word": "pill",
+    "onset": "p",
+    "rime": "ill",
+    "family": "-ill",
+    "stage": 9,
+    "note": "對比桶 p_ 充足(pig/pin/pip/pit 同母音)。畫單顆膠囊,與階段二 kit(急救箱)構成主題關聯",
+    "zh": "藥丸"
+  },
+  {
+    "word": "bill",
+    "onset": "b",
+    "rime": "ill",
+    "family": "-ill",
+    "stage": 9,
+    "note": "同形異義,選定「帳單」(非鳥喙);對比桶 b_ 充足(big/bin 同母音)。7 歲中文概念稍弱,為 -ill 湊足 3 字而收;票面不可有文字或數字",
+    "zh": "帳單"
+  },
+  {
+    "word": "boss",
+    "onset": "b",
+    "rime": "oss",
+    "family": "-oss",
+    "stage": 9,
+    "note": "-oss 新家族;-ss 底下唯一同時滿足 3 字與模式 C 者(box 為同母音異尾子音)。畫穿西裝打領帶的男性上半身",
+    "zh": "老闆"
+  },
+  {
+    "word": "moss",
+    "onset": "m",
+    "rime": "oss",
+    "family": "-oss",
+    "stage": 9,
+    "note": "對比桶 m_ 充足,mop 為同母音異尾子音。台灣孩子中文詞彙具體度中等。畫長滿綠苔的單顆石頭",
+    "zh": "苔蘚"
+  },
+  {
+    "word": "toss",
+    "onset": "t",
+    "rime": "oss",
+    "family": "-oss",
+    "stage": 9,
+    "note": "動詞,破例;對比桶 t_ 充足,top 為同母音異尾子音。畫面為手向上拋球加弧線動作線,與 catch(接住)構成動作對比",
+    "zh": "拋"
+  },
+  {
+    "word": "cake",
+    "onset": "c",
+    "rime": "ake",
+    "family": "-ake",
+    "stage": 10,
+    "note": "對比桶 c_ 充足(cat/can/cap 同母音異尾子音)。畫圓形雙層蛋糕側視,不加蠟燭數字",
+    "zh": "蛋糕"
+  },
+  {
+    "word": "lake",
+    "onset": "l",
+    "rime": "ake",
+    "family": "-ake",
+    "stage": 10,
+    "note": "對比桶 l_ 充足(lamp 同母音)。需最小限度岸邊綠地才能辨識,屬無背景規則的例外,比照階段七 dock",
+    "zh": "湖"
+  },
+  {
+    "word": "rake",
+    "onset": "r",
+    "rime": "ake",
+    "family": "-ake",
+    "stage": 10,
+    "note": "對比桶 r_ 充足(rat/rag/rack/ramp 同母音)。台灣孩子概念中等,以園藝扇形耙呈現",
+    "zh": "耙子"
+  },
+  {
+    "word": "cage",
+    "onset": "c",
+    "rime": "age",
+    "family": "-age",
+    "stage": 10,
+    "note": "soft g /dʒ/,本階段第二變數(magic e 同時觸發 g 軟化),建議程式端排在 a_e 組最後。對比桶 c_ 充足。以鳥籠呈現,籠內不放鳥以維持單一主體",
+    "zh": "籠子"
+  },
+  {
+    "word": "page",
+    "onset": "p",
+    "rime": "age",
+    "family": "-age",
+    "stage": 10,
+    "note": "soft g。對比桶 p_ 充足(pan/pack/path/patch 同母音)。畫翻開的書單頁被掀起,與階段九 thick(厚書側面)以視角區隔;頁面不可有文字",
+    "zh": "書頁"
+  },
+  {
+    "word": "stage",
+    "onset": "st",
+    "rime": "age",
+    "family": "-age",
+    "stage": 10,
+    "note": "soft g。onset st- 為階段八已教子音串,不引入新變數;對比桶 st_ 充足(stamp/stand 同母音)",
+    "zh": "舞台"
+  },
+  {
+    "word": "face",
+    "onset": "f",
+    "rime": "ace",
+    "family": "-ace",
+    "stage": 10,
+    "note": "soft c /s/,本階段第二變數,建議程式端排在 a_e 組最後。對比桶 f_ 充足(fat/fan 同母音)",
+    "zh": "臉"
+  },
+  {
+    "word": "race",
+    "onset": "r",
+    "rime": "ace",
+    "family": "-ace",
+    "stage": 10,
+    "note": "soft c。動詞,破例;對比桶 r_ 充足(rat/rag/rack/ramp 同母音)。畫面為兩個小孩並排衝過終點彩帶,屬單一物件規則的例外",
+    "zh": "賽跑"
+  },
+  {
+    "word": "lace",
+    "onset": "l",
+    "rime": "ace",
+    "family": "-ace",
+    "stage": 10,
+    "note": "soft c。對比桶 l_ 充足(lamp 同母音)。7 歲中文概念中等,為 -ace 湊足 3 字而收;以扇形波浪邊加鏤空花孔呈現,與階段九 patch(布面加縫線)區隔",
+    "zh": "蕾絲"
+  },
+  {
+    "word": "cane",
+    "onset": "c",
+    "rime": "ane",
+    "family": "-ane",
+    "stage": 10,
+    "note": "成分字 can 在庫,為本階段 9 個成分對比字之一。對比桶 c_ 充足",
+    "zh": "拐杖"
+  },
+  {
+    "word": "mane",
+    "onset": "m",
+    "rime": "ane",
+    "family": "-ane",
+    "stage": 10,
+    "note": "成分字 man 在庫。部位字,需以整隻獅子呈現並突顯頸部鬃毛才能辨識,比照階段二 fin、階段七 wing/hump。對比桶 m_ 充足",
+    "zh": "鬃毛"
+  },
+  {
+    "word": "lane",
+    "onset": "l",
+    "rime": "ane",
+    "family": "-ane",
+    "stage": 10,
+    "note": "7 歲中文概念偏弱,為 -ane 湊足 3 字而收;對比桶 l_ 充足。畫柏油路面加白色虛線,與階段九 path(石板小徑)、階段八 track(鐵軌)明確區隔",
+    "zh": "車道"
+  },
+  {
+    "word": "cape",
+    "onset": "c",
+    "rime": "ape",
+    "family": "-ape",
+    "stage": 10,
+    "note": "成分字 cap 在庫,cap/cape 為本階段最佳最小對比。族內僅 2 字,不足 3 字下限,使用者裁定破例;模式 C 對比桶 c_ 充足",
+    "zh": "披風"
+  },
+  {
+    "word": "tape",
+    "onset": "t",
+    "rime": "ape",
+    "family": "-ape",
+    "stage": 10,
+    "note": "成分字 tap 在庫。族內僅 2 字,破例;對比桶 t_ 充足(tap/tag/tack 同母音)。畫一捲膠帶側視,帶一段拉出的透明膠面",
+    "zh": "膠帶"
+  },
+  {
+    "word": "cave",
+    "onset": "c",
+    "rime": "ave",
+    "family": "-ave",
+    "stage": 10,
+    "note": "族內僅 2 字,破例(have /hæv/ 為發音例外已排除,save/shave 不合約束)。對比桶 c_ 充足。zh 用「山洞」與階段二 pit(坑洞)、本階段 hole(破洞)三者區隔",
+    "zh": "山洞"
+  },
+  {
+    "word": "wave",
+    "onset": "w",
+    "rime": "ave",
+    "family": "-ave",
+    "stage": 10,
+    "note": "族內僅 2 字,破例;對比桶 w_ 充足(wag 同母音)。畫單一捲曲大浪,與階段九 ship 圖中的小波浪以尺度區隔",
+    "zh": "波浪"
+  },
+  {
+    "word": "rice",
+    "onset": "r",
+    "rime": "ice",
+    "family": "-ice",
+    "stage": 10,
+    "note": "soft c /s/,本階段第二變數,建議程式端排在 i_e 組最後。對比桶 r_ 充足(ring 同母音)。畫一碗白飯,與階段九 dish(空盤)、lunch(便當盒)以容器造型區隔",
+    "zh": "米飯"
+  },
+  {
+    "word": "ice",
+    "onset": "",
+    "rime": "ice",
+    "family": "-ice",
+    "stage": 10,
+    "note": "soft c。零 onset(母音開頭),同 ox/up/ink 前例;對比桶為零 onset 桶,ink 為同母音異尾子音 ✅。畫單顆半透明冰塊,需與同族 dice(骰子)以有無點數明確區隔",
+    "zh": "冰"
+  },
+  {
+    "word": "dice",
+    "onset": "d",
+    "rime": "ice",
+    "family": "-ice",
+    "stage": 10,
+    "note": "soft c。對比桶 d_ 充足(dig/din/dip/dish/ditch 同母音)。畫單顆立方體骰子露出三面點數;點數為圓點非數字,與 no text 規則不牴觸,但需與 five/nine 的圓點卡以立方體造型區隔",
+    "zh": "骰子"
+  },
+  {
+    "word": "pine",
+    "onset": "p",
+    "rime": "ine",
+    "family": "-ine",
+    "stage": 10,
+    "note": "成分字 pin 在庫,pin/pine 為 i_e 組最佳最小對比。對比桶 p_ 充足",
+    "zh": "松樹"
+  },
+  {
+    "word": "line",
+    "onset": "l",
+    "rime": "ine",
+    "family": "-ine",
+    "stage": 10,
+    "note": "概念偏抽象,破例;對比桶 l_ 充足(lip/lick/link 同母音)。以單一粗黑水平線條呈現,與階段七 link(三環相扣)區隔",
+    "zh": "線"
+  },
+  {
+    "word": "nine",
+    "onset": "n",
+    "rime": "ine",
+    "family": "-ine",
+    "stage": 10,
+    "note": "數字,單一物件規則例外,比照階段五 ten 以圓點排列表示(3×3 格)。模式 C 子條件未滿足:n_ 桶有 nap/net/nut 共 3 字但無 i 母音字,誘答項品質較低。備選字 shine 雖滿足約束但語意過弱",
+    "zh": "九"
+  },
+  {
+    "word": "bike",
+    "onset": "b",
+    "rime": "ike",
+    "family": "-ike",
+    "stage": 10,
+    "note": "對比桶 b_ 充足(big/bin/bill 同母音)。畫無人的腳踏車側視,與同階段 ride(小孩騎馬)明確區隔",
+    "zh": "腳踏車"
+  },
+  {
+    "word": "hike",
+    "onset": "h",
+    "rime": "ike",
+    "family": "-ike",
+    "stage": 10,
+    "note": "活動概念,破例;對比桶 h_ 充足(hip/hit/hill 同母音)。畫背背包的小孩往上坡行走,與階段九 hill(單純綠丘)以有無人物區隔",
+    "zh": "健行"
+  },
+  {
+    "word": "spike",
+    "onset": "sp",
+    "rime": "ike",
+    "family": "-ike",
+    "stage": 10,
+    "note": "onset sp- 為階段八已教子音串;對比桶 sp_ 充足(spin 同母音)。概念中等,為 -ike 湊足 3 字而收。畫粗大有稜角的金屬長釘,與階段二 pin(大頭針)、階段七 tack(圖釘)以尺寸與稜角區隔",
+    "zh": "尖刺"
+  },
+  {
+    "word": "ride",
+    "onset": "r",
+    "rime": "ide",
+    "family": "-ide",
+    "stage": 10,
+    "note": "動詞,破例;對比桶 r_ 充足(ring 同母音)。改採小孩騎馬而非騎腳踏車,以避開同階段 bike 的圖像衝突",
+    "zh": "騎"
+  },
+  {
+    "word": "hide",
+    "onset": "h",
+    "rime": "ide",
+    "family": "-ide",
+    "stage": 10,
+    "note": "動詞,破例;對比桶 h_ 充足(hip/hit/hill 同母音)。畫面為小孩躲在紙箱後方探頭,與階段三 box(單純箱子)以有無人物區隔",
+    "zh": "躲"
+  },
+  {
+    "word": "wide",
+    "onset": "w",
+    "rime": "ide",
+    "family": "-ide",
+    "stage": 10,
+    "note": "形容詞,破例;對比桶 w_ 充足(wig/win/wing/wish/witch 同母音)。畫又寬又扁的長方形箱子加左右雙向箭頭,屬單一物件規則例外;與階段九 thin(細鉛筆)、階段二 big(同物件兩尺寸)以表現手法區隔",
+    "zh": "寬的"
+  },
+  {
+    "word": "pipe",
+    "onset": "p",
+    "rime": "ipe",
+    "family": "-ipe",
+    "stage": 10,
+    "note": "成分字 pip 在庫。對比桶 p_ 充足。畫灰色金屬直管加直角接頭,與同階段 hose(綠色捲曲軟管)明確區隔",
+    "zh": "水管"
+  },
+  {
+    "word": "wipe",
+    "onset": "w",
+    "rime": "ipe",
+    "family": "-ipe",
+    "stage": 10,
+    "note": "動詞,破例;對比桶 w_ 充足。畫面為一隻手拿抹布擦桌面加動作線,與階段一 rag(單獨抹布)以有無手部與動作線區隔",
+    "zh": "擦"
+  },
+  {
+    "word": "ripe",
+    "onset": "r",
+    "rime": "ipe",
+    "family": "-ipe",
+    "stage": 10,
+    "note": "形容詞,破例,概念需靠色澤傳達;對比桶 r_ 充足(ring 同母音)。畫熟透的黃色香蕉帶少許褐色斑點,不用蘋果以避開階段二 pip(蘋果籽)",
+    "zh": "熟的"
+  },
+  {
+    "word": "five",
+    "onset": "f",
+    "rime": "ive",
+    "family": "-ive",
+    "stage": 10,
+    "note": "數字,單一物件規則例外,比照階段五 ten 以圓點排列表示。對比桶 f_ 充足(fig/fin/fish 同母音)。同族的 give/live 為發音例外,已排除,教學時需留意",
+    "zh": "五"
+  },
+  {
+    "word": "hive",
+    "onset": "h",
+    "rime": "ive",
+    "family": "-ive",
+    "stage": 10,
+    "note": "對比桶 h_ 充足(hip/hit/hill 同母音)。畫水滴狀蜂巢加一隻蜜蜂,與階段四 bug(瓢蟲)以造型區隔",
+    "zh": "蜂窩"
+  },
+  {
+    "word": "dive",
+    "onset": "d",
+    "rime": "ive",
+    "family": "-ive",
+    "stage": 10,
+    "note": "動詞,破例;對比桶 d_ 充足(dig/din/dip/dish/ditch 同母音)。需最小限度水面才能辨識,屬無背景規則的例外,比照階段七 dock",
+    "zh": "跳水"
+  },
+  {
+    "word": "kite",
+    "onset": "k",
+    "rime": "ite",
+    "family": "-ite",
+    "stage": 10,
+    "note": "成分字 kit 在庫。族內僅 2 字,不足 3 字下限,使用者裁定破例(white 卡 wh_ 桶僅 whip 一字、write 為 silent w);模式 C 對比桶 k_ 充足(kit/kick/king 同母音)",
+    "zh": "風箏"
+  },
+  {
+    "word": "bite",
+    "onset": "b",
+    "rime": "ite",
+    "family": "-ite",
+    "stage": 10,
+    "note": "動詞,破例;族內僅 2 字,破例。對比桶 b_ 充足(big/bin/bill 同母音)。畫蘋果上有一個弧形咬痕缺口,與階段二 pip(蘋果籽)以剖面與否區隔",
+    "zh": "咬"
+  },
+  {
+    "word": "mole",
+    "onset": "m",
+    "rime": "ole",
+    "family": "-ole",
+    "stage": 10,
+    "note": "對比桶 m_ 充足(mop/moss 同母音)。畫鼴鼠站姿並突顯大鏟狀前爪與粉紅鼻子,與階段一 rat(老鼠)明確區隔",
+    "zh": "鼴鼠"
+  },
+  {
+    "word": "pole",
+    "onset": "p",
+    "rime": "ole",
+    "family": "-ole",
+    "stage": 10,
+    "note": "對比桶 p_ 充足(pot/pop 同母音)。畫細長垂直立地的木桿,與階段八 stick(短棍)、twig(小樹枝)以長度與垂直姿態區隔",
+    "zh": "竿子"
+  },
+  {
+    "word": "hole",
+    "onset": "h",
+    "rime": "ole",
+    "family": "-ole",
+    "stage": 10,
+    "note": "語意衝突處理:階段二 pit 已定為「地面上的坑」,本字改採木板上的圓形穿孔破洞,zh 用「破洞」而非「洞」。對比桶 h_ 充足(hot/hop 同母音)",
+    "zh": "破洞"
+  },
+  {
+    "word": "rose",
+    "onset": "r",
+    "rime": "ose",
+    "family": "-ose",
+    "stage": 10,
+    "note": "s 讀 /z/,本階段第三變數,建議程式端排在 o_e 組最後。對比桶 r_ 充足(rock 同母音)",
+    "zh": "玫瑰"
+  },
+  {
+    "word": "nose",
+    "onset": "n",
+    "rime": "ose",
+    "family": "-ose",
+    "stage": 10,
+    "note": "s 讀 /z/。模式 C 子條件未滿足:n_ 桶有 nap/net/nut 共 3 字但無 o 母音字,誘答項品質較低。部位字,需以側臉呈現才能辨識,比照階段二 fin",
+    "zh": "鼻子"
+  },
+  {
+    "word": "hose",
+    "onset": "h",
+    "rime": "ose",
+    "family": "-ose",
+    "stage": 10,
+    "note": "s 讀 /z/。對比桶 h_ 充足(hot/hop 同母音)。語意衝突處理:畫綠色捲曲橡膠軟管加噴嘴,與同階段 pipe(灰色金屬直管)明確區隔",
+    "zh": "澆花水管"
+  },
+  {
+    "word": "cute",
+    "onset": "c",
+    "rime": "ute",
+    "family": "-ute",
+    "stage": 10,
+    "note": "u_e 唯一可收的兩字之一。成分字 cut 在庫;對比桶 c_ 充足(cut/cup 同母音異尾子音),模式 C 完全滿足,可正常出題。族內僅 1 字,不足 3 字下限,破例。u_e 讀 /juː/,與 tube/rule 的 /uː/ 不同音值,同族異音的 -ube/-ule 已全數排除。形容詞,破例;畫圓滾滾的小倉鼠加一顆愛心,屬單一物件規則例外",
+    "zh": "可愛"
+  },
+  {
+    "word": "huge",
+    "onset": "h",
+    "rime": "uge",
+    "family": "-uge",
+    "stage": 10,
+    "note": "成分字 hug 在庫;對比桶 h_ 充足(hug/hut/hump 同母音異尾子音),模式 C 完全滿足。族內僅 1 字,破例。u_e 讀 /juː/ 且 g 為 soft g /dʒ/,雙變數疊加。形容詞,破例;畫小男孩站在比他大數倍的巨球旁,以人與物體的懸殊比例呈現,與階段二 big(同物件兩尺寸)區隔",
+    "zh": "巨大"
+  },
+  {
+    "word": "feet",
+    "onset": "f",
+    "rime": "eet",
+    "family": "-eet",
+    "stage": 11,
+    "note": "部位字,畫一雙赤腳。對比桶 f_ 充足,feed 為同母音異尾子音 ✅。複數形,單數 foot 為母音例外不收",
+    "zh": "腳"
+  },
+  {
+    "word": "sheet",
+    "onset": "sh",
+    "rime": "eet",
+    "family": "-eet",
+    "stage": 11,
+    "note": "同形異義,選定「床單」(非紙張)。對比桶 sh_ 充足,sheep ✅。與階段五 bed 以攤平無床架區隔",
+    "zh": "床單"
+  },
+  {
+    "word": "beet",
+    "onset": "b",
+    "rime": "eet",
+    "family": "-eet",
+    "stage": 11,
+    "note": "台灣孩子概念偏弱,為 -eet 湊足 3 字而收;對比桶 b_ 充足,bee ✅",
+    "zh": "甜菜"
+  },
+  {
+    "word": "seed",
+    "onset": "s",
+    "rime": "eed",
+    "family": "-eed",
+    "stage": 11,
+    "note": "對比桶 s_ 充足但無同母音「ee」異尾子音字(see/seek 抽象未收),模式 C 子條件未滿足",
+    "zh": "種子"
+  },
+  {
+    "word": "weed",
+    "onset": "w",
+    "rime": "eed",
+    "family": "-eed",
+    "stage": 11,
+    "note": "對比桶 w_ 充足;子條件未滿足(week 抽象未收)",
+    "zh": "雜草"
+  },
+  {
+    "word": "feed",
+    "onset": "f",
+    "rime": "eed",
+    "family": "-eed",
+    "stage": 11,
+    "note": "動詞,破例;對比桶 f_ 充足,feet ✅。畫面為一隻手撒飼料給一隻小雞,與階段五 hen(單獨母雞)以有無手部區隔",
+    "zh": "餵"
+  },
+  {
+    "word": "sheep",
+    "onset": "sh",
+    "rime": "eep",
+    "family": "-eep",
+    "stage": 11,
+    "note": "對比桶 sh_ 充足,sheet ✅。與同階段 goat 以捲毛、無角區隔",
+    "zh": "綿羊"
+  },
+  {
+    "word": "jeep",
+    "onset": "j",
+    "rime": "eep",
+    "family": "-eep",
+    "stage": 11,
+    "note": "對比桶 j_ 充足(jug/jet/jam/jump);子條件未滿足。與階段一 van 以方正車身與外掛備胎區隔",
+    "zh": "吉普車"
+  },
+  {
+    "word": "sweep",
+    "onset": "sw",
+    "rime": "eep",
+    "family": "-eep",
+    "stage": 11,
+    "note": "動詞,破例;對比桶 sw_ 僅 swing/sweep 2 字,模式 C 失效(使用者放寬 0 字桶後之破例)。畫面為男孩拿掃把掃地,與同階段 broom(單獨掃把)以有無人物區隔,比照 rag/wipe 前例",
+    "zh": "掃地"
+  },
+  {
+    "word": "bee",
+    "onset": "b",
+    "rime": "ee",
+    "family": "-ee",
+    "stage": 11,
+    "note": "對比桶 b_ 充足,beet ✅。與階段十 hive(蜂窩)構成主題關聯,本字畫單隻蜜蜂。-ee 家族 2 字,破例",
+    "zh": "蜜蜂"
+  },
+  {
+    "word": "tree",
+    "onset": "tr",
+    "rime": "ee",
+    "family": "-ee",
+    "stage": 11,
+    "note": "對比桶 tr_ 充足(track/trap/trash);子條件未滿足。畫圓冠闊葉樹,與階段十 pine(松樹)以樹冠造型區隔。-ee 家族 2 字,破例",
+    "zh": "樹"
+  },
+  {
+    "word": "queen",
+    "onset": "qu",
+    "rime": "een",
+    "family": "-een",
+    "stage": 11,
+    "note": "onset 取 digraph「qu」(/kw/),此處 u 不作母音,與「rime 從第一個母音字母開始」字面規則牴觸,待使用者裁定。對比桶 qu_ 僅 1 字,模式 C 失效。與階段七 king 構成主題對比",
+    "zh": "女王"
+  },
+  {
+    "word": "green",
+    "onset": "gr",
+    "rime": "een",
+    "family": "-een",
+    "stage": 11,
+    "note": "形容詞/顏色,破例;比照階段五 red、階段七 pink、階段八 black,以單一顏料罐表達顏色本身。onset gr- 為新子音串且桶內僅 1 字,模式 C 失效(使用者放寬)",
+    "zh": "綠色"
+  },
+  {
+    "word": "screen",
+    "onset": "scr",
+    "rime": "een",
+    "family": "-een",
+    "stage": 11,
+    "note": "onset scr- 為新三子音串,桶內僅 1 字,模式 C 失效(使用者放寬)。畫平板裝置,螢幕須全空白無圖示與文字",
+    "zh": "螢幕"
+  },
+  {
+    "word": "teeth",
+    "onset": "t",
+    "rime": "eeth",
+    "family": "-eeth",
+    "stage": 11,
+    "note": "複數形,畫上下兩排牙齒;與同階段 tooth(單顆臼齒)為整體/個體關係,使用者裁定兩者並存。-eeth 家族僅 1 字,破例;t_ 桶無同母音「ee」異尾子音字,子條件未滿足",
+    "zh": "牙齒"
+  },
+  {
+    "word": "tea",
+    "onset": "t",
+    "rime": "ea",
+    "family": "-ea",
+    "stage": 11,
+    "note": "對比桶 t_ 充足,teach ✅。畫冒熱氣的茶杯連茶碟,與階段四 cup(無把手杯)、mug(馬克杯)以茶碟與熱氣區隔",
+    "zh": "茶"
+  },
+  {
+    "word": "sea",
+    "onset": "s",
+    "rime": "ea",
+    "family": "-ea",
+    "stage": 11,
+    "note": "對比桶 s_ 充足,seat/seal ✅。畫開闊海面與地平線,屬無背景規則的例外,比照階段七 dock;與同階段 beach 以有無沙地區隔",
+    "zh": "海"
+  },
+  {
+    "word": "pea",
+    "onset": "p",
+    "rime": "ea",
+    "family": "-ea",
+    "stage": 11,
+    "note": "對比桶 p_ 充足,peach ✅。畫剖開的豆莢露出圓豆,與同階段其他食物字無衝突",
+    "zh": "豌豆"
+  },
+  {
+    "word": "peach",
+    "onset": "p",
+    "rime": "each",
+    "family": "-each",
+    "stage": 11,
+    "note": "對比桶 p_ 充足,pea ✅",
+    "zh": "桃子"
+  },
+  {
+    "word": "beach",
+    "onset": "b",
+    "rime": "each",
+    "family": "-each",
+    "stage": 11,
+    "note": "對比桶 b_ 充足但無同母音「ea」異尾子音字(bean 未收),子條件未滿足。畫沙灘加一把陽傘,屬無背景規則例外;與階段七 sand(沙灘桶)以場景/物件區隔",
+    "zh": "沙灘"
+  },
+  {
+    "word": "teach",
+    "onset": "t",
+    "rime": "each",
+    "family": "-each",
+    "stage": 11,
+    "note": "動詞,破例;對比桶 t_ 充足,tea ✅。畫面為老師持教鞭指著黑板,黑板須全空白,不可有任何文字或圖形",
+    "zh": "教"
+  },
+  {
+    "word": "meat",
+    "onset": "m",
+    "rime": "eat",
+    "family": "-eat",
+    "stage": 11,
+    "note": "對比桶 m_ 充足但無同母音「ea」異尾子音字,子條件未滿足。畫單塊帶骨牛排,與階段一 ham(圓形火腿片)以造型區隔",
+    "zh": "肉"
+  },
+  {
+    "word": "seat",
+    "onset": "s",
+    "rime": "eat",
+    "family": "-eat",
+    "stage": 11,
+    "note": "對比桶 s_ 充足,sea/seal ✅。畫單張有靠背木椅側視,與階段二 sit(男孩坐著)以有無人物區隔",
+    "zh": "座位"
+  },
+  {
+    "word": "wheat",
+    "onset": "wh",
+    "rime": "eat",
+    "family": "-eat",
+    "stage": 11,
+    "note": "對比桶 wh_ 僅 whip/wheat 2 字,模式 C 失效(使用者放寬)。台灣孩子概念中等,為 -eat 湊足 3 字而收;畫單束金黃麥穗",
+    "zh": "小麥"
+  },
+  {
+    "word": "leaf",
+    "onset": "l",
+    "rime": "eaf",
+    "family": "-eaf",
+    "stage": 11,
+    "note": "-eaf 家族僅 1 字(deaf 讀 /ɛ/ 已排除),破例;對比桶 l_ 充足但無同母音「ea」異尾子音字,子條件未滿足",
+    "zh": "葉子"
+  },
+  {
+    "word": "seal",
+    "onset": "s",
+    "rime": "eal",
+    "family": "-eal",
+    "stage": 11,
+    "note": "-eal 家族僅 1 字(meal 與階段九 lunch 衝突,heal/real 抽象),破例;對比桶 s_ 充足,sea/seat ✅",
+    "zh": "海豹"
+  },
+  {
+    "word": "boat",
+    "onset": "b",
+    "rime": "oat",
+    "family": "-oat",
+    "stage": 11,
+    "note": "對比桶 b_ 充足但無同母音「oa」異尾子音字,子條件未滿足。畫小木船加雙槳,與階段九 ship(大型貨輪)以尺寸與船槳區隔",
+    "zh": "小船"
+  },
+  {
+    "word": "coat",
+    "onset": "c",
+    "rime": "oat",
+    "family": "-oat",
+    "stage": 11,
+    "note": "對比桶 c_ 充足,coal ✅。畫有鈕扣與領子的長大衣,與階段十 cape(無袖披風)以有無袖子區隔",
+    "zh": "外套"
+  },
+  {
+    "word": "goat",
+    "onset": "g",
+    "rime": "oat",
+    "family": "-oat",
+    "stage": 11,
+    "note": "對比桶 g_ 由 gun/goat/goal 湊足 3 字,goal ✅(放寬前 g_ 僅 gun 一字)。畫有鬍鬚與彎角的山羊,與同階段 sheep 區隔",
+    "zh": "山羊"
+  },
+  {
+    "word": "goal",
+    "onset": "g",
+    "rime": "oal",
+    "family": "-oal",
+    "stage": 11,
+    "note": "同形異義,選定「球門」(非抽象目標);對比桶 g_ 充足,goat ✅。-oal 家族 2 字,使用者裁定破例",
+    "zh": "球門"
+  },
+  {
+    "word": "coal",
+    "onset": "c",
+    "rime": "oal",
+    "family": "-oal",
+    "stage": 11,
+    "note": "對比桶 c_ 充足,coat ✅。-oal 家族 2 字破例。畫單塊黑色有稜角的煤,與階段七 rock(灰色圓潤石頭)以顏色與稜角區隔",
+    "zh": "煤炭"
+  },
+  {
+    "word": "soap",
+    "onset": "s",
+    "rime": "oap",
+    "family": "-oap",
+    "stage": 11,
+    "note": "-oap 家族僅 1 字,破例;對比桶 s_ 充足,sea/seat/seal ✅。畫圓角長方形皂塊,不加泡泡以維持單一物件",
+    "zh": "肥皂"
+  },
+  {
+    "word": "toast",
+    "onset": "t",
+    "rime": "oast",
+    "family": "-oast",
+    "stage": 11,
+    "note": "-oast 家族僅 1 字(roast 與 meat 衝突,coast 與 beach 衝突),破例;對比桶 t_ 充足,toad ✅。畫單片烤過的方形吐司,與階段四 bun(圓麵包)區隔",
+    "zh": "吐司"
+  },
+  {
+    "word": "toad",
+    "onset": "t",
+    "rime": "oad",
+    "family": "-oad",
+    "stage": 11,
+    "note": "-oad 家族僅 1 字(road 與階段十 lane、階段九 path、階段八 track 衝突而不收),破例;對比桶 t_ 充足,toast ✅。台灣孩子概念中等",
+    "zh": "蟾蜍"
+  },
+  {
+    "word": "moon",
+    "onset": "m",
+    "rime": "oon",
+    "family": "-oon",
+    "stage": 11,
+    "note": "對比桶 m_ 充足但無同母音「oo」異尾子音字,子條件未滿足。畫弦月造型,與階段四 sun(圓盤加光芒)以形狀明確區隔。-oon 家族 2 字,使用者裁定破例",
+    "zh": "月亮"
+  },
+  {
+    "word": "spoon",
+    "onset": "sp",
+    "rime": "oon",
+    "family": "-oon",
+    "stage": 11,
+    "note": "對比桶 sp_ 充足(spot/spin/spike);子條件未滿足。-oon 家族 2 字破例",
+    "zh": "湯匙"
+  },
+  {
+    "word": "pool",
+    "onset": "p",
+    "rime": "ool",
+    "family": "-ool",
+    "stage": 11,
+    "note": "對比桶 p_ 充足但無同母音「oo」異尾子音字,子條件未滿足。畫矩形泳池俯視加水道分隔線,與階段十 lake(自然湖岸)以幾何造型區隔",
+    "zh": "游泳池"
+  },
+  {
+    "word": "stool",
+    "onset": "st",
+    "rime": "ool",
+    "family": "-ool",
+    "stage": 11,
+    "note": "對比桶 st_ 充足;子條件未滿足。畫三腳圓凳,與同階段 seat(有靠背木椅)以有無椅背區隔",
+    "zh": "板凳"
+  },
+  {
+    "word": "school",
+    "onset": "sch",
+    "rime": "ool",
+    "family": "-ool",
+    "stage": 11,
+    "note": "onset sch- 為新三字母串,桶內僅 1 字,模式 C 失效(使用者放寬)。畫校舍正面加鐘塔,不可有校名文字",
+    "zh": "學校"
+  },
+  {
+    "word": "boot",
+    "onset": "b",
+    "rime": "oot",
+    "family": "-oot",
+    "stage": 11,
+    "note": "對比桶 b_ 充足但無同母音「oo」異尾子音字,子條件未滿足。畫單隻及膝長筒雨靴,與階段七 sock(短襪)以高度與材質區隔。-oot 家族 2 字,使用者裁定破例。同族 foot 讀 /ʊ/,異音已排除",
+    "zh": "靴子"
+  },
+  {
+    "word": "root",
+    "onset": "r",
+    "rime": "oot",
+    "family": "-oot",
+    "stage": 11,
+    "note": "對比桶 r_ 充足,roof ✅。畫樹幹下方分岔根系,需最小限度地面線才能辨識,屬無背景規則例外,比照階段七 dock。-oot 家族 2 字破例",
+    "zh": "樹根"
+  },
+  {
+    "word": "tooth",
+    "onset": "t",
+    "rime": "ooth",
+    "family": "-ooth",
+    "stage": 11,
+    "note": "-ooth 家族僅 1 字(booth 概念弱),破例;t_ 桶無同母音「oo」異尾子音字(tool 未收),子條件未滿足。使用者裁定與 teeth 並存,本字畫單顆帶牙根的臼齒",
+    "zh": "一顆牙"
+  },
+  {
+    "word": "broom",
+    "onset": "br",
+    "rime": "oom",
+    "family": "-oom",
+    "stage": 11,
+    "note": "onset br- 桶內僅 1 字,模式 C 失效(使用者放寬)。-oom 家族僅 1 字(room 需背景),破例。與階段一 mop(布條拖把頭)以硬鬃扇形刷頭區隔;與同階段 sweep(男孩掃地)以有無人物區隔",
+    "zh": "掃把"
+  },
+  {
+    "word": "roof",
+    "onset": "r",
+    "rime": "oof",
+    "family": "-oof",
+    "stage": 11,
+    "note": "美式多讀 /uː/,少數變體讀 /ʊ/,採 /uː/ 歸入本組;對比桶 r_ 充足,root ✅。-oof 家族僅 1 字,破例。畫三角形斜屋頂帶瓦片,與同階段 school(整棟校舍)以局部/整體區隔",
+    "zh": "屋頂"
   }
 ]

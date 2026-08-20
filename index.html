@@ -301,7 +301,8 @@
   const MIN_HEIGHT = 700;
   const CONTRAST_STAGE = 6;
   const MIN_CONTRAST_SIZE = 3;
-  const RIME_MODE_STAGES = new Set([7]);  // 挖整塊 rime 的階段(見 HANDOFF.md §B2)
+  const RIME_MODE_STAGES = new Set([7, 8, 9, 10, 11]);  // 挖整塊 rime 的階段(見 HANDOFF.md §B2)
+  const MIN_SESSION_POOL = 2;  // 選單收錄門檻:候選池不足 2 字組不成選項
 
   let words = [];
   let contrastSets = new Map();
@@ -438,13 +439,20 @@
       return;
     }
     const inStage = words.filter((w) => String(w.stage) === String(stage));
-    const families = [...new Set(inStage.map((w) => w.family))].sort();
+    // 同字族(含 stage 較小的舊字)不足 2 字者不列,選了也開不了 session,例如階段九的 -umb
+    const families = [...new Set(inStage.map((w) => w.family))]
+      .filter((f) => words.filter((w) => w.family === f && w.stage <= Number(stage))
+        .length >= MIN_SESSION_POOL)
+      .sort();
     if (!RIME_MODE_STAGES.has(Number(stage))) {
       addOptionGroup(select, families);
       return;
     }
-    // 零 onset(ink)沒有開頭音可選,只從字族進去
+    // 零 onset(ink)沒有開頭音可選,只從字族進去;
+    // 同 onset(含 stage 較小的舊字)不足 2 字者不列,例如階段八的 sw-、pl-
     const onsets = [...new Set(inStage.filter((w) => w.onset).map((w) => w.onset))]
+      .filter((o) => words.filter((w) => w.onset === o && w.stage <= Number(stage))
+        .length >= MIN_SESSION_POOL)
       .sort().map((o) => `${o}-`);
     addOptionGroup(select, families, '字族(比開頭音)');
     addOptionGroup(select, onsets, '開頭音(比字尾)');

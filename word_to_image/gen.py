@@ -23,6 +23,9 @@ ENV_PATH = "/home/emissionspectrum/Dev/prompt-To-Image/.env"
 API_URL = "https://api.openai.com/v1/images/generations"
 PARAMS = {"model": "gpt-image-2", "quality": "low", "size": "1024x1024", "n": 1}
 WORKERS = 3
+PLACEHOLDER = "[風格描述]"
+RETRIES = 6
+RATE_LIMIT_WAIT = 15
 
 
 class Rejected(Exception):
@@ -41,26 +44,32 @@ def load_key():
 
 
 def load_prompts():
-    """去掉空行後,奇數行是檔名、偶數行是 prompt。
+    """檔案開頭是風格描述宣告與風格句,之後每則是 `單字 — 描述 [風格描述]`。
 
-    標題行必須是單一單字——prompt 若被編輯器斷成兩行,配對會整個錯位,
-    寧可停在這裡報行號,也不要安靜地產出一整批對錯檔名的圖。
+    分節標題(如 `ee /iː/`)不含佔位符,略過;含佔位符卻配不出單字檔名的行
+    要報行號停下來——寧可停在這裡,也不要安靜地漏掉一張圖。
     """
-    entries, pending = [], None
+    entries, style = [], None
     with open(PROMPT_PATH, encoding="utf-8") as f:
         for lineno, raw in enumerate(f, 1):
             line = raw.strip()
             if not line:
                 continue
-            if pending is None:
-                if not re.fullmatch(r"[a-z0-9_-]+", line):
-                    sys.exit(f"prompt.txt 第 {lineno} 行應該是單字檔名,卻是:{line[:60]}")
-                pending = line
-            else:
-                entries.append((pending, line))
-                pending = None
-    if pending is not None:
-        sys.exit(f"prompt.txt 結尾的 '{pending}' 沒有對應的 prompt")
+            if style is None:
+                if PLACEHOLDER.strip("[]") in line and line.endswith((":", "：")):
+                    continue
+                style = line
+                continue
+            if PLACEHOLDER not in line:
+                continue
+            m = re.fullmatch(r"([a-z0-9_-]+) — (.+)", line)
+            if not m:
+                sys.exit(f"prompt.txt 第 {lineno} 行認不出 `單字 — 描述`:{line[:60]}")
+            entries.append((m.group(1), m.group(2).replace(PLACEHOLDER, style)))
+    if style is None:
+        sys.exit("prompt.txt 找不到風格描述句")
+    if not entries:
+        sys.exit("prompt.txt 沒有任何 `單字 — 描述 [風格描述]` 的條目")
     return entries
 
 
@@ -78,7 +87,8 @@ def call_api(prompt):
 
 def generate(prompt):
     last = ""
-    for attempt in range(3):
+    for attempt in range(RETRIES):
+        wait = 2**attempt
         try:
             return call_api(prompt)
         except urllib.error.HTTPError as e:
@@ -93,10 +103,13 @@ def generate(prompt):
                 raise Rejected(message)
             if e.code != 429 and e.code < 500:
                 raise RuntimeError(message)
+            # 每分鐘只准 5 張,指數退避的頭幾秒遠不夠等額度回來
+            if e.code == 429:
+                wait = RATE_LIMIT_WAIT
             last = message
         except (urllib.error.URLError, TimeoutError, OSError) as e:
             last = str(e)
-        time.sleep(2**attempt)
+        time.sleep(wait)
     raise RuntimeError(last)
 
 

@@ -1,2 +1,98 @@
-dam
-A simple cartoon concrete dam, a thick curved grey wall holding back blue water on one side, with a small spillway opening at the bottom releasing water on the low side, front three-quarter view. Simple flat vector illustration, bold clean outlines, limited muted color palette, single object centered, plain white background, no text, no letters, no background details, no shadows, children's educational flashcard style, square composition.
+風格描述一字不改,統一為:
+Simple flat vector illustration, bold clean outlines, limited muted color palette, single object centered, plain white background, no text, no letters, no background details, no shadows, children's educational flashcard style, square composition.
+
+ee /iː/
+
+feet — A pair of simple cartoon bare human feet seen from the front, toes pointing forward, both feet side by side. [風格描述]
+
+sheet — A simple cartoon bed sheet laid flat and spread out, with soft folds and wrinkles along the edges, no bed frame. [風格描述]
+
+beet — A simple cartoon beetroot, round deep red bulb with a thin tapering root at the bottom and two green leaves on top. [風格描述]
+
+seed — A simple cartoon seed, single oval brown seed with a small sprout beginning to emerge from the top. [風格描述]
+
+weed — A simple cartoon weed plant, a scruffy green stalk with irregular jagged leaves and a small tuft of roots at the base. [風格描述]
+
+feed — A simple cartoon human hand scattering small grains of feed downward toward one small yellow chick standing below, motion dots showing the falling grain. [風格描述]
+
+sheep — A simple cartoon sheep standing, side view, fluffy curly white woolly body, dark face and legs, no horns. [風格描述]
+
+jeep — A simple cartoon jeep, side view, boxy body with a flat roof, exposed round headlights and a spare tire mounted on the back. [風格描述]
+
+sweep — A simple cartoon boy holding a broom and sweeping the floor, side view, small motion lines near the broom head showing the sweeping movement. [風格描述]
+
+bee — A simple cartoon honeybee flying, side view, yellow and black striped body with two small transparent wings. [風格描述]
+
+tree — A simple cartoon broadleaf tree, thick brown trunk with a full rounded green canopy, no other plants. [風格描述]
+
+queen — A simple cartoon queen, upper body front view, a woman wearing a golden crown and a royal robe with a high collar. [風格描述]
+
+green — A simple cartoon paint can filled with green paint, a thick green drip running down the side of the can, label completely blank. [風格描述]
+
+screen — A simple cartoon tablet device held upright, thin rectangular frame with a completely blank empty screen, no icons and no images on the screen. [風格描述]
+
+teeth — A simple cartoon set of human teeth, front view, showing one full upper row and one full lower row of white teeth slightly apart, pink gums above and below. [風格描述]
+
+ea /iː/
+
+tea — A simple cartoon teacup filled with amber tea resting on a matching saucer, side view, with three curling steam wisps rising from the cup. [風格描述]
+
+sea — A simple cartoon open sea, wide blue water with a few gentle rolling waves and a flat horizon line, nothing else on the water. [風格描述]
+
+pea — A simple cartoon pea pod split open lengthwise, green pod shell revealing three round green peas inside. [風格描述]
+
+peach — A simple cartoon peach, round orange-pink fruit with a soft crease down the middle and one small green leaf on the stem. [風格描述]
+
+beach — A simple cartoon sandy beach, a stretch of pale sand with one striped beach umbrella planted upright in it, thin strip of blue water behind. [風格描述]
+
+teach — A simple cartoon teacher standing beside a blackboard and pointing at it with a pointer stick, side view, the blackboard surface completely blank and empty. [風格描述]
+
+meat — A simple cartoon raw steak, a single thick cut of red meat with a white bone at one end and a rim of pale fat. [風格描述]
+
+seat — A simple cartoon wooden chair, side view, with four straight legs and a tall slatted backrest, unoccupied. [風格描述]
+
+wheat — A simple cartoon bundle of wheat, several golden stalks with full grain heads tied together with a thin band. [風格描述]
+
+leaf — A simple cartoon leaf, single oval green leaf with a clear central vein and branching side veins, short stem at the base. [風格描述]
+
+seal — A simple cartoon seal sitting upright on its flippers, side view, smooth grey body with whiskers and large round eyes. [風格描述]
+
+oa /oʊ/
+
+boat — A simple cartoon small wooden rowboat, side view, with two oars resting in the oarlocks, sitting on a short strip of water. [風格描述]
+
+coat — A simple cartoon long winter coat displayed flat, front view, with two full sleeves, a folded collar and a vertical row of round buttons. [風格描述]
+
+goat — A simple cartoon goat standing, side view, with a white beard under the chin and two curved backward horns. [風格描述]
+
+goal — A simple cartoon soccer goal, front view, rectangular white frame with a criss-cross net stretched across it, empty. [風格描述]
+
+coal — A simple cartoon lump of coal, a single angular black rock with sharp irregular facets and a faint glossy highlight. [風格描述]
+
+soap — A simple cartoon bar of soap, a single rounded rectangular block with softly bevelled edges, blank surface with no engraving. [風格描述]
+
+toast — A simple cartoon slice of toast, a single square piece of golden-brown toasted bread with a rounded top crust. [風格描述]
+
+toad — A simple cartoon toad crouching, side view, wide squat brown body covered in small bumps, with bulging eyes on top of the head. [風格描述]
+
+oo /uː/
+
+moon — A simple cartoon crescent moon, pale yellow curved sliver with a few small round craters along the inner edge. [風格描述]
+
+spoon — A simple cartoon spoon, viewed from above, with a rounded oval bowl and a straight slender handle. [風格描述]
+
+pool — A simple cartoon swimming pool seen from above, rectangular basin of blue water with straight white lane dividers running lengthwise and a tiled border. [風格描述]
+
+stool — A simple cartoon wooden stool, side view, a round flat seat supported by three slanted legs, no backrest. [風格描述]
+
+school — A simple cartoon school building, front view, a wide two-storey building with rows of blank windows, a central door and a small bell tower on the roof, signboard completely blank. [風格描述]
+
+boot — A simple cartoon rubber rain boot, single boot, side view, tall shaft reaching to knee height with a thick treaded sole. [風格描述]
+
+root — A simple cartoon tree root system, the base of a thick trunk with several thick roots spreading and branching downward below a thin ground line. [風格描述]
+
+tooth — A simple cartoon single molar tooth, front view, white crown with a bumpy chewing surface and two pointed roots below. [風格描述]
+
+broom — A simple cartoon broom standing upright, long wooden handle with a wide fan-shaped head of stiff straw bristles. [風格描述]
+
+roof — A simple cartoon pitched roof, front view, a triangular roof covered in rows of overlapping tiles with a small chimney on one slope, no walls below. [風格描述]

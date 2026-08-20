@@ -254,8 +254,8 @@ DESIGN.md §7.2 的範例字列了幾個 words.json 裡沒有的字。不是錯�
 
 # 第二部分：階段七以後的資料契約
 
-**日期：** 2026-08-19（2026-08-19 修訂：補 B2 題型模式與選字約束、七欄 schema、階段七定案清單）
-**狀態：** 階段編號 7–11 已由家長確認採用。階段七 29 字、階段八 22 字（另補階段一 -am 三字）已入庫；模式 A、B、C 三種題型與各自的第 1 層干擾項**皆已實作**。
+**日期：** 2026-08-19（2026-08-19 修訂：補 B2 題型模式與選字約束、七欄 schema、階段七定案清單；補階段九、階段十定案清單。2026-08-21 修訂：階段十一入庫，§B2、§C、§D 改寫為現況）
+**狀態：** 階段編號 7–11 已由家長確認採用。階段七 29 字、階段八 22 字（另補階段一 -am 三字）、階段九 37 字、階段十 44 字、階段十一 44 字已入庫，音檔齊全。words.json 現有 253 字，**七到十一階段全數產完**。模式 A 與 C 及各自的第 1 層干擾項**皆已實作**；模式 B 只存在於程式合成的階段六，**階段十一原定用 B、實際改用 A ＋ C**（見 §B2 ①、§C）。
 
 回答五個問題：schema 是否要變、各階段題型、family 的意義、對比組去留、不要產出什麼。
 
@@ -307,6 +307,45 @@ DESIGN.md §7.2 的範例字列了幾個 words.json 裡沒有的字。不是錯�
 - **另補 `ham`、`jam`、`dam` 三字為 `stage: 1`**，新開 -am 家族。三字都給階段一是因為它們是單子音 CVC；只給兩字的話階段一的 -am session 只有兩個選項，違反 E8 的族下限。
 - 第 1 層（成分字）為空的有 black、clam、flag、stamp、stump 五字，其餘 17 字都有。**不需為此補字**，理由同階段七的模式 C。
 
+**階段九已定案：37 字，已寫入 words.json。** 字首 digraph（模式 A）與字尾 digraph／-ll／-ss（模式 C）一併收在此階段。
+
+| 類別 | family／onset | 字 |
+| --- | --- | --- |
+| 字首 sh- | -ip / -op / -ut / -ell | ship, shop, shut, shell |
+| 字首 ch- | -ip / -op / -at | chip, chop, chat |
+| 字首 th- | -umb / -in / -ick | thumb, thin, thick |
+| 字首 wh- | -ip | whip（單字破例） |
+| -ish | | fish, dish, wish |
+| -ash | | cash, trash, flash |
+| -unch | | lunch, punch, bunch |
+| -atch | | catch, match, patch |
+| -itch | | witch, ditch, pitch |
+| -ath | | bath, path, math |
+| -ell | | shell, bell, well |
+| -ill | | hill, pill, bill |
+| -oss | | boss, moss, toss |
+
+- **`thumb` 是家長裁定收錄的破例**（silent b；-umb 全庫僅此一字）。族內不足 2 字就湊不出選項，**程式端已改成不把這種字族列進選單** —— 所以 `-umb` 在階段九選單裡看不到，thumb 目前不會被出題。要讓它出題，-umb 需再補到 2 字以上（本階段沒有合規候選）。
+- **`wh-` 只有 whip 一字**，被開頭音選單的 ≥2 門檻擋掉（同階段八的 sn-／sw-／pl-）；whip 仍會出現在 -ip 字族的題目裡。
+- 模式 A 第 1 層（成分字）為空的有 shell、thumb、thin、thick、trash、flash 六字，其餘有 onset 為子音串／digraph 的字都有。模式 C 第 1 層為空的是 sh-／ch-／wh- 底下的字（同 onset 內每個字母音都不同）。**兩者皆不需為此補字**，理由同階段七、八。
+- `math` 的圖必須含阿拉伯數字與加號，與「畫面不出現文字」的風格描述牴觸，**待家長確認**（前例：階段七 clock 的鐘面數字、階段八 stop 的路牌）。
+
+**階段十已定案：17 族 44 字，已寫入 words.json。**
+
+| 母音 | family | 字 |
+| --- | --- | --- |
+| a_e | -ake / -age / -ace / -ane / -ape / -ave | cake lake rake ／ cage page stage ／ face race lace ／ cane mane lane ／ cape tape ／ cave wave |
+| i_e | -ice / -ine / -ike / -ide / -ipe / -ive / -ite | rice ice dice ／ pine line nine ／ bike hike spike ／ ride hide wide ／ pipe wipe ripe ／ five hive dive ／ kite bite |
+| o_e | -ole / -ose | mole pole hole ／ rose nose hose |
+| u_e | -ute / -uge | cute ／ huge |
+
+- **模式 C（開頭音選單）是本階段的主力題型，全數成立。** 15 個開頭音池全部 ≥2，第 1 層（同 onset、同母音字母、異尾子音）實測長這樣：cute → cut/cup、huge → hug/hut/hump、kite → kit/kick/king、cape → cap、cake → cap/camp/catch。§B2 那條「同母音是同母音**字母**段、不是音值」的前提在這裡才真正生效，實測正確。
+- **`-ute`（cute）與 `-uge`（huge）族內各只有 1 字，被字族選單的 ≥2 門檻擋掉**，同階段九的 -umb。但**兩字不會因此消失**：它們在 c-／h- 的開頭音 session 裡是正常 target，而模式 C 本來就是階段十該練的題型，教學上無損失。
+- **`nine` 與 `nose` 的模式 C 第 1 層是空的**（n- 池只有 nap/net/nut，沒有 i 或 o 母音的字），如字彙表所述，兩者的誘答項落到第 2 層。**不需為此補字**，理由同階段七、八、九。
+- **`ice` 是零 onset 字，只能從 `-ice` 字族進去**，不會出現在開頭音選單（程式明確排除空 onset，同 ox/up/ink 前例）。字彙表所寫的「零 onset 對比桶（ink 為同母音異尾子音）」目前**沒有對應的 session**。若要開，需另外做一個零 onset 的開頭音項目，屬新功能，尚未實作。
+- 模式 A 第 1 層（成分字）為空的只有 stage、spike 兩個子音串字（`-age`／`-ike` 族內沒有 s/t/p 開頭的同族字）。
+- 收字時已排除的發音例外：have、give、live、tube、rule、white、write（理由見字彙表 note 與 E6／E7）。
+
 ## B. schema：完全不變
 
 **七欄**照舊，三條不變式照舊（`onset + rime === word`；`rime[0]` 是 a/e/i/o/u；`onset` 可為空字串但不可省略）。逐階段驗證過：
@@ -340,9 +379,9 @@ DESIGN.md §7.2 的範例字列了幾個 words.json 裡沒有的字。不是錯�
 
 | 模式 | 挖哪一格 | 用在 |
 | --- | --- | --- |
-| **A** | onset 磚 | 階段 1–5、7（字族選單）、8、9 字首 |
-| **B** | rime 裡的母音單位 | 階段 6（1 字母）、11（1–2 字母） |
-| **C** | 整塊 rime 磚 | 階段 7（開頭音選單）、9 字尾、10 |
+| **A** | onset 磚 | 階段 1–5；階段 7–11 的**字族選單**（階段 8、9 的字首 blend／digraph 也走這條，onset 磚整塊顯示） |
+| **B** | rime 裡的母音單位 | **只有階段 6**（1 字母，程式合成的對比組）。階段十一原定用 B，實際改用 A ＋ C，見下方 ① |
+| **C** | 整塊 rime 磚 | 階段 7–11 的**開頭音選單**（階段 9 的字尾 digraph 也走這條） |
 
 ### 模式決定選字約束
 
@@ -351,14 +390,14 @@ DESIGN.md §7.2 的範例字列了幾個 words.json 裡沒有的字。不是錯�
 | 模式 | 選字時必須湊滿的組 | 備註 |
 | --- | --- | --- |
 | A | 同 **rime 家族** ≥ 3 | 現行規則，一直都對 |
-| C | 同 **onset** ≥ 3，**且其中至少 1 個與 target 只差一個維度** | 階段七缺的就是這條 |
-| B | 同 **onset ＋尾子音骨架** ≥ 3 | 尚未用過 |
+| C | 同 **onset** ≥ 2，**且其中至少 1 個與 target 只差一個維度** | 階段七缺的就是這條 |
+| B | 同 **onset ＋尾子音骨架** ≥ 3 | **從未實際用於選字**：階段六不選字（既有字自動成組），階段十一最後沒走這條路 |
 
 「只差一個維度」＝ 母音相同而尾子音不同（sick / sing），或尾子音相同而母音不同（cap / cape、lick / lock）。沒有這個同伴，選項湊滿 3 個也只是亂猜，題目沒有教學點。
 
 ### 三條可以直接照做的選字結論（已用現有 103 字驗證）
 
-**① 階段十一選 `coat`，不選 `boat`。** 骨架 `c_t` 已有 cat / cot / cut，coat 一插進去就是四選一的母音單位對比；`b_t` 只有 bat，boat 進來是孤字。**階段十一請直接照這 16 個骨架挑字，不要重新盤點：**
+**① ~~階段十一照 16 個骨架挑字~~ —— 未採用，本條已作廢。** 原建議是「選 `coat` 不選 `boat`」，按 `onset ＋尾子音骨架` 湊出模式 B 的對比組。實際交來的階段十一 44 字是按 rime 家族挑的，與骨架清單沒對上：全庫套用骨架 key 之後，44 字裡只有 5 個（beet、boat、boot、coat、sheep）落進 ≥3 的骨架組，總共 3 組 —— `b_t`(bat beet boat boot)、`c_t`(cat coat cot cut)、`sh_p`(sheep ship shop)。**家長裁定階段十一改用模式 A ＋ C**（同階段 7–10），模式 B 不再用於階段十一，這條骨架約束連帶失效。原清單留在下面，僅供日後真要開模式 B 時參考：
 
 ```
 b_g(bag big bug)  c_t(cat cot cut)  h_t(hat hit hot hut)  p_n(pan pen pin)
@@ -396,8 +435,8 @@ clock(lock)  block(lock)   clap(cap)
 | --- | --- | --- | --- |
 | **A** | 8、9 字首 | 同字族，onset 是 target onset 的**單一成分** | stop → top、swing → sing / wing、ship → hip |
 | **A** | 1–5 | 不必分層（同字族本來就只差 onset） | — |
-| **B** | 6、11 | 同 onset，**同尾子音、異母音** | cat → cot / cut / coat |
-| **C** | 7、9 字尾、10 | 同 onset，**同母音、異尾子音** | sick → sit / sing / sink、cape → cap |
+| **B** | 6 | 同 onset，**同尾子音、異母音** | cat → cot / cut |
+| **C** | 7–11 的開頭音選單 | 同 onset，**同母音、異尾子音** | sick → sit / sing / sink、cape → cap、sea → seat / seal |
 
 **第 1 層不問階段是必要的**：cape 最該有的干擾項是 cap（階段一），sick 最該有的是 sit（階段一），stop 最該有的是 top（階段三）。若「同階段優先」，這些教學點全會被排到最後。
 
@@ -410,7 +449,7 @@ clock(lock)  block(lock)   clap(cap)
 1. **切法**：`母音段 = rime 開頭的連續母音字母`，`尾子音段 = 其餘`。所以 `ape` 拆成 `a` ＋ `pe`，cap(`a`|`p`) 對 cape(`a`|`pe`) 自動落在「同母音、異尾子音」，magic e 不必另開特例。
 2. **「同母音」是同母音字母段，不是同母音音值。** cap /æ/ 和 cape /eɪ/ 的音值完全不同，若拿音值比對，階段十的第 1 層會全部落空。階段七剛好字母與音值一致，測不出這個錯；階段十才會爆。
 
-**第 1 層可以是空的。** 現有 103 字實測：28 個模式 C target 裡有 6 個（lock、rock、sock、ring、lump、lamp）湊不出同母音的同伴——例如 s- 底下母音 o 的字只有 sock。這 6 個自然往第 2 層落，候選池和不分層時一樣，**不需要為此補字**。
+**第 1 層可以是空的。** 現有 103 字實測：28 個模式 C target 裡有 6 個（lock、rock、sock、ring、lump、lamp）湊不出同母音的同伴——例如 s- 底下母音 o 的字只有 sock。這 6 個自然往第 2 層落，候選池和不分層時一樣，**不需要為此補字**。階段十一入庫後同樣量過：39 個模式 C target 的第 1 層數量分布為 0（18 個）、1（18 個）、2（3 個），空的比例比階段七高（母音組合的同 onset 同伴本來就少，例如 b- 底下拼 `oa` 的只有 boat），結論不變，**一樣不需要為此補字**。模式 A 那邊，階段十一的 35 個字族 target 第 1 層**全數為空**（sheet、sweep、tree、green、screen、spoon、stool、school、broom 等子音串字的成分字都不在同一個 rime 家族裡），同階段十的情形，一樣不補。
 
 ---
 
@@ -423,15 +462,18 @@ clock(lock)  block(lock)   clap(cap)
 | 階段 | 模式 | 題型 | 程式端 |
 | --- | --- | --- | --- |
 | 7 | **A ＋ C** | 字族選單（-ack）挖 onset；開頭音選單（s-）挖整塊 rime | 已實作 |
-| 8 | A | 現有題型；onset 磚顯示 `st` 整塊 | 已實作（模式 A 第 1 層：成分字必進選項） |
-| 9 字首 sh/ch/th | A | 同上 | 同階段八，不需另設計 |
-| 9 字尾 fish / bell / kiss | **C** | 挖整塊 rime，比 -ish / -ell / -iss | 同階段七，不需另設計 |
-| 10 magic e | **C** | `c` ＋ `[ap]` / `[ape]`；點錯播 cap（真字）就是辨別回饋 | 同階段七，不需另設計 |
-| 11 母音組合 | **B** | rime 內母音單位挖空，由程式合成（同階段六） | 對比組 key 推廣，見 D 節 |
+| 8 | **A ＋ C** | 字族選單（-ock）挖 onset，onset 磚顯示 `cl` 整塊；開頭音選單（st-）挖整塊 rime | 已實作（模式 A 第 1 層：成分字必進選項） |
+| 9 | **A ＋ C** | 字族選單（-ish）挖 onset，onset 磚顯示 `sh` 整塊；開頭音選單（sh-、f-）挖整塊 rime | 已實作 |
+| 10 | **A ＋ C** | 字族選單（-ake）挖 onset；開頭音選單（c-）挖整塊 rime，`c` ＋ `[ap]` / `[ape]`，點錯播 cap（真字）就是辨別回饋 | 已實作 |
+| 11 母音組合 | **A ＋ C** | 字族選單（-eet）挖 onset；開頭音選單（s-）挖整塊 rime，`s` ＋ `[ea]`／`[eat]`／`[eal]`／`[oap]`，母音組合的長短與異同就在整塊 rime 上對比 | 已實作（`RIME_MODE_STAGES` 加入 11，一行） |
 
-**階段 10–11 不需要第四種模式。** 原本預告的「cap↔cape 辨別題」與「母音組合辨音題」已分別由模式 C、B 涵蓋，兩項**結案**。
+**選單的收錄門檻（已實作）：同 onset／同字族的字（含 `stage` 較小的舊字）不足 2 個就不列進選單** —— 少於 2 字連一組選項都湊不出來，選了也開不了 session。這是 B2「模式 C 要同 onset ≥ 2」在程式端的落實。階段七 12 個開頭音全數 ≥2，選單不變；階段八 **st-（5 字）、cl-（4 字）、bl-／fl-／sp-／tr-／tw-（各 2 字）** 過關，只有 sn-、sw-、pl- 各 1 字被擋掉。**要開出新的開頭音 session，該 onset 補到第 2 個字即可**，例如 sw- 補 swing 之外的第二字。字族選單同樣套用此門檻，目前擋掉階段九的 -umb（thumb）與階段十的 -ute（cute）、-uge（huge）三族。
 
-階段 10–11 的字可以先產、先進資料，但**必須先照 B2 的選字約束挑字**。
+**階段十一的門檻結果（實測）：** 開頭音 18 個過關，`br-`、`gr-`、`qu-`、`sch-`、`scr-` 各 1 字被擋掉；字族擋掉 -eaf、-eal、-eeth、-oad、-oap、-oast、-oof、-oom、-ooth 九族。合計 31 個 session、74 題。green／queen／screen 走 -een、school 走 -ool，teeth／leaf／seal／soap／toast／toad／tooth／roof 八字族內只有自己、全靠開頭音 session 出題。**兩條路都被擋掉、因而完全出不了題的只有 `broom`**（`-oom` 與 `br-` 都只有它一字）—— 補第二個 `br-` 的字或第二個 `-oom` 的字，任一即可救回，這是選字決定。
+
+**階段 10–11 不需要第四種模式。** 原本預告的「cap↔cape 辨別題」與「母音組合辨音題」**都由模式 C 涵蓋**，兩項**結案**。階段十一原定走模式 B（挖 rime 裡的母音單位），實際改用 A ＋ C：字族選單練「-eet 前面接什麼」，開頭音選單練「s 後面是 ea、eat、eal 還是 oap」—— 後者就是母音組合的辨音題，只是挖整塊 rime 而不是只挖母音那幾個字母。程式端僅把 11 加進 `RIME_MODE_STAGES`，**沒有新增任何模式**。
+
+階段 10、11 的字均已入庫（各 44 字），本節到此全部落地。
 
 ## D. 對比組：繼續運作，不加開關
 
@@ -439,9 +481,9 @@ clock(lock)  block(lock)   clap(cap)
 
 唯一的排除規則（已實作）：**`rime` 第二個字元也是母音的字（rain、boat、feet）不入對比組** —— 它們的母音是兩個字母，不是單母音對比。
 
-**這條是階段六專用的保護措施，不是永久規則。** 到階段十一，對比組的 key 從「onset ＋ rime 去掉第一個字母」改成「onset ＋ rime 去掉**開頭的母音連續段**」，於是 cat / cot / cut / coat 全部落進 `c_t` 一組，母音單位對比題（模式 B）自動成立，本條排除規則整條刪除。
+**這條原本規劃是階段六專用的保護措施，2026-08-21 起改為永久規則。** 原訂到階段十一時把對比組的 key 從「onset ＋ rime 去掉第一個字母」改成「onset ＋ rime 去掉**開頭的母音連續段**」，讓 cat / cot / cut / coat 落進 `c_t` 一組、模式 B 自動成立，並刪掉本條排除規則。**這項推廣沒有執行** —— 階段十一改走模式 A ＋ C（見 §B2 ①、§C），不需要模式 B，key 維持原樣，排除規則留著。
 
-**改動時機：等階段十一的字真的進庫再改。** 提早改會讓階段六的既有對比組意外變動。
+**日後若真要開模式 B，代價先記在這裡（已用現有 253 字實測）：** 階段六的對比組會從 7 組變成 9 組 —— 多出 `b_t`(bat beet boat boot) 與 `sh_p`(sheep ship shop)，且既有的 `c_t` 會從 cat/cot/cut 變成 cat/coat/cot/cut，選項裡出現兩個字母的 `oa`。**這是階段六的行為變動，不是純新增**，要改就得連帶確認階段六還是不是家長要的樣子。
 
 ## E. 不要產出的清單
 
@@ -452,7 +494,7 @@ clock(lock)  block(lock)   clap(cap)
 5. 不收 -all／-alk／wa- 開頭（ball、walk、want）—— 母音變音，同 DESIGN.md 的 -og 理由。
 6. magic e 只收規則的短→長對應；不收例外拼法（have、give、love、come、some、one、done）。
 7. 母音組合只收規則發音：ea 取 /iː/ 組（eat、sea），不收 bread、head；**同一 family 內母音發音必須一致**（-ood 會裂成 food /uː/ 對 good /ʊ/，這種拆開或擇一收）。
-8. 每個新 family 至少 3 個真字（族下限）；**並照 B2 的模式對應約束再驗一次**（模式 C 要同 onset ≥3、模式 B 要同骨架 ≥3）。只滿足族下限不夠——階段七就是這樣漏掉的。
+8. 每個新 family 至少 3 個真字（族下限）；**並照 B2 的模式對應約束再驗一次**（模式 C 要同 onset ≥2、模式 B 要同骨架 ≥3）。只滿足族下限不夠——階段七就是這樣漏掉的。
 9. 不重複產出既有的字（現有清單以 words.json 為準）。
 
 ## F. 每階段一筆範例 JSON
