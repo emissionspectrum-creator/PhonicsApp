@@ -55,7 +55,7 @@
     align-items: center;
     padding: 0 28px;
   }
-  #stage-select, #family-select {
+  #mode-select, #stage-select, #family-select {
     font-family: inherit;
     font-size: 13px;
     color: #b8ad98;
@@ -64,7 +64,7 @@
     cursor: pointer;
     outline: none;
   }
-  #stage-select:hover, #family-select:hover { color: #8a7f6a; }
+  #mode-select:hover, #stage-select:hover, #family-select:hover { color: #8a7f6a; }
 
   /* 中帶 */
   #stage {
@@ -187,6 +187,7 @@
     transform: translate(-50%, 0);
   }
   #reveal.no-anim { transition: none; }
+  #stage.no-anim #puzzle, #stage.no-anim #reveal { transition: none; }
   #reveal-image {
     display: block;
     width: 100%;
@@ -274,6 +275,10 @@
 
 <div id="app">
   <header id="top-bar">
+    <select id="mode-select">
+      <option value="quiz">聽音選字</option>
+      <option value="read">看字唸音</option>
+    </select>
     <select id="stage-select"></select>
     <select id="family-select"></select>
   </header>
@@ -307,7 +312,8 @@
   let words = [];
   let contrastSets = new Map();
   let session = null;
-  let solved = false;
+  let mode = 'quiz';  // quiz = 聽音選字,read = 看字唸音
+  let solved = false;  // 本題已完成:quiz 是答對,read 是按過發音鍵
   let roundToken = 0;  // 翻頁時作廢上一題還在等待中的圖片顯示
 
   function isVowel(ch) {
@@ -408,8 +414,9 @@
 
   function buildStageSelect() {
     const stages = new Set(words.map((w) => w.stage));
-    stages.add(CONTRAST_STAGE);
+    if (mode !== 'read') stages.add(CONTRAST_STAGE);
     const select = document.getElementById('stage-select');
+    const prev = select.value;
     select.innerHTML = '';
     for (const stage of [...stages].sort((a, b) => a - b)) {
       const opt = document.createElement('option');
@@ -417,6 +424,16 @@
       opt.textContent = `階段 ${stage}`;
       select.appendChild(opt);
     }
+    // 換模式時停在原本的階段;原階段在新模式不存在(階段六)才落回第一個
+    if ([...stages].some((st) => String(st) === prev)) select.value = prev;
+  }
+
+  // 看字唸音沒有子分類:一個階段就是一輪,字族選單整個收起來
+  function applyMode() {
+    buildStageSelect();
+    document.getElementById('family-select').style.display =
+      mode === 'read' ? 'none' : '';
+    if (mode !== 'read') buildFamilySelect(document.getElementById('stage-select').value);
   }
 
   function addOptionGroup(select, names, groupLabel) {
@@ -523,6 +540,31 @@
     reveal.classList.remove('no-anim');
   }
 
+  // 看字唸音:字與圖一開始就同時出現,不自動播音。發音鍵是他唯一要主動做的事
+  function renderReadRound(target) {
+    const puzzle = document.getElementById('puzzle');
+    puzzle.innerHTML = '';
+    for (const ch of target.word) {
+      const tile = document.createElement('div');
+      tile.className = 'letter-tile';
+      paintUnit(tile, ch);
+      puzzle.appendChild(tile);
+    }
+    puzzle.classList.remove('bounce');
+
+    const img = document.getElementById('reveal-image');
+    img.src = `/assets/images/${target.word}.webp`;
+    img.alt = target.word;
+    document.getElementById('reveal-note').textContent = target.zh || '';
+    document.getElementById('options-row').innerHTML = '';
+
+    // 直接套上定位,不走進場動畫:翻頁時圖片不該每次都滑一遍
+    const stage = document.getElementById('stage');
+    stage.classList.add('no-anim', 'solved');
+    void stage.offsetWidth;
+    stage.classList.remove('no-anim');
+  }
+
   function renderOptions(options, target) {
     const row = document.getElementById('options-row');
     row.innerHTML = '';
@@ -611,6 +653,11 @@
     solved = false;
     roundToken++;
     const { target, options } = session.rounds[session.roundIndex];
+    if (mode === 'read') {
+      renderReadRound(target);
+      updateNav();
+      return;
+    }
     resetPuzzle(target);
     renderOptions(options, target);
     updateNav();
@@ -618,6 +665,13 @@
   }
 
   function startSession(name, stage) {
+    if (mode === 'read') {
+      const items = words.filter((w) => String(w.stage) === String(stage));
+      if (!items.length) return;
+      session = { rounds: shuffle(items).map((target) => ({ target })), roundIndex: 0 };
+      renderRound();
+      return;
+    }
     const contrast = isContrastStage(stage);
     const rimeMode = isRimeMode(stage, name);
     // 挖 rime 時 target 只限本階段,干擾項可用同 onset 的任何舊字
@@ -662,6 +716,12 @@
   document.getElementById('replay-btn').addEventListener('click', () => {
     if (!session) return;
     playWord(session.rounds[session.roundIndex].target);
+    // 看字唸音:按下即解鎖下一頁,不等播完 — 音檔載入失敗才不會把他卡在這一頁
+    if (mode === 'read' && !solved) {
+      solved = true;
+      updateNav();
+      preloadNextImage();
+    }
   });
 
   document.getElementById('prev-btn').addEventListener('click', () =>
@@ -678,11 +738,17 @@
     contrastSets = buildContrastSets();
     buildStageSelect();
 
+    const modeSelect = document.getElementById('mode-select');
     const stageSelect = document.getElementById('stage-select');
     const familySelect = document.getElementById('family-select');
 
+    modeSelect.addEventListener('change', () => {
+      mode = modeSelect.value;
+      applyMode();
+      startSession(familySelect.value, stageSelect.value);
+    });
     stageSelect.addEventListener('change', () => {
-      buildFamilySelect(stageSelect.value);
+      if (mode !== 'read') buildFamilySelect(stageSelect.value);
       startSession(familySelect.value, stageSelect.value);
     });
     familySelect.addEventListener('change', () =>
