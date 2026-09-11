@@ -6,21 +6,26 @@
 
 ## 需求
 
-- Python 3.13
-- ffmpeg（`generate_audio.py` 的靜音修剪 / 音量正規化需要）
-- `pip install flask pillow edge-tts pydub audioop-lts`
+- Python 3.12 以上
+- ffmpeg（`generate_audio.py` 的靜音修剪 / 音量正規化需要；`sudo apt install ffmpeg`）
+- 套件：flask、pillow、edge-tts、pydub（Python 3.13 另需 `audioop-lts`）
 
 ## 執行
 
 ```bash
-./start.sh          # Linux/macOS，啟動 server 並開啟瀏覽器到 admin.html
+./start.sh          # Linux/macOS，啟動 server 並開啟瀏覽器到主畫面
 start.bat           # Windows
 ```
+
+`start.sh` 會在 `.venv/` 不存在時自動建立虛擬環境並安裝套件，所以重灌系統後直接執行即可
+（Ubuntu 24.04 起的 Python 受 PEP 668 保護，不能 `pip install` 到系統，必須用 venv）。
 
 或手動啟動：
 
 ```bash
-python3 server.py
+python3 -m venv .venv
+.venv/bin/pip install flask pillow edge-tts pydub
+.venv/bin/python server.py
 ```
 
 - 主畫面（給小孩用）：`http://127.0.0.1:5001/`
