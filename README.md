@@ -6,19 +6,32 @@
 
 ## 需求
 
-- Python 3.12 以上
-- ffmpeg（`generate_audio.py` 的靜音修剪 / 音量正規化需要；`sudo apt install ffmpeg`）
+- Python 3.12 以上（建議 3.12；3.13 移除了 stdlib 的 `audioop`，pydub 需額外裝 `audioop-lts`）
+- ffmpeg（`generate_audio.py` 的靜音修剪 / 音量正規化需要；
+  Linux `sudo apt install ffmpeg`，Windows `winget install Gyan.FFmpeg`）
 - 套件：flask、pillow、edge-tts、pydub（Python 3.13 另需 `audioop-lts`）
 
 ## 執行
 
 ```bash
 ./start.sh          # Linux/macOS，啟動 server 並開啟瀏覽器到主畫面
-start.bat           # Windows
+start.bat           # Windows，雙擊即可
 ```
 
-`start.sh` 會在 `.venv/` 不存在時自動建立虛擬環境並安裝套件，所以重灌系統後直接執行即可
+兩者都會在虛擬環境不存在時自動建立並安裝套件，所以重灌系統後直接執行即可
 （Ubuntu 24.04 起的 Python 受 PEP 668 保護，不能 `pip install` 到系統，必須用 venv）。
+
+虛擬環境目錄兩個平台分開：Linux/macOS 用 `.venv/`，Windows 用 `.venv-win/`
+（venv 內含平台專屬的執行檔與路徑，同一份資料夾在兩邊共用會壞掉）。
+
+Windows 首次使用需先自行安裝 Python —— PATH 上預設的 `python.exe` 是 Microsoft Store
+的空殼別名，不是真的 Python：
+
+```
+winget install --id Python.Python.3.12 -e --scope machine
+```
+
+或到 <https://www.python.org/downloads/> 下載安裝，務必勾選 **Add python.exe to PATH**。
 
 或手動啟動：
 
