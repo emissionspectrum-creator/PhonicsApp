@@ -27,6 +27,12 @@
     --vowel-color: #c0392b;
     --placeholder-border: #d8cdb8;
     --radius: 18px;
+
+    /* 磚塊同時受寬高限制,版面才會等比縮小而非被壓扁。
+       19vh 來自答對後不被 #stage 切到的條件:磚高 ≤ 20vh(見 .solved #puzzle 的 translateY),
+       留 1vh 餘裕。16vh 是 9vw 在 16:9 下的等值,比 16:9 扁時改由高度主導。 */
+    --tile: min(13vw, 19vh, 170px);
+    --option: min(9vw, 16vh, 110px);
   }
 
   * { box-sizing: border-box; }
@@ -89,15 +95,14 @@
   }
 
   .letter-slot, .letter-tile {
-    width: 13vw;
-    height: 13vw;
-    max-width: 170px;
-    max-height: 170px;
+    width: var(--tile);
+    height: var(--tile);
     margin: 0 2px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 7vw;
+    /* 134px 是磚塊封頂(170px)當下的字級,字因此與磚塊同時停止放大 */
+    font-size: min(7vw, 12.5vh, 134px);
     font-weight: 700;
     border-radius: var(--radius);
     background: var(--tile-bg);
@@ -111,7 +116,7 @@
   }
 
   .gap-spacer {
-    width: 6vw;
+    width: min(6vw, 10.7vh);
     flex-shrink: 0;
     transition: width 300ms ease-out;
   }
@@ -216,23 +221,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5vw;
+    gap: min(5vw, 8.9vh);
     height: 100%;
   }
   #options-row.locked .option-tile { pointer-events: none; }
 
   .option-tile {
-    width: 9vw;
-    height: 9vw;
-    max-width: 110px;
-    max-height: 110px;
+    width: var(--option);
+    height: var(--option);
     border: none;
     border-radius: var(--radius);
     background: var(--tile-bg);
     box-shadow: var(--tile-shadow);
     font-family: 'Lexend', sans-serif;
     font-weight: 700;
-    font-size: 4.5vw;
+    font-size: min(4.5vw, 8vh, 86px);
     color: var(--consonant-color);
     cursor: pointer;
     transition: transform 150ms ease, box-shadow 150ms ease;
@@ -253,25 +256,28 @@
   }
   .option-tile.fade-out { animation: fadeOut 300ms ease forwards; }
 
+  /* 提示而非封鎖:版面已能自行縮放(見 --tile),視窗小只是體驗打折,不是不能用。
+     縮在右上角、不吃點擊,app 在底下照常運作。 */
   #min-height-warning {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 10px;
+    right: 14px;
     z-index: 9999;
-    background: var(--bg);
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 24px;
-    font-size: 24px;
-    color: var(--consonant-color);
+    padding: 6px 14px;
+    border-radius: 14px;
+    background: rgba(255, 250, 240, 0.92);
+    box-shadow: var(--tile-shadow);
+    font-size: 14px;
+    color: #8a7f6a;
+    pointer-events: none;
   }
-  #min-height-warning.visible { display: flex; }
+  #min-height-warning.visible { display: block; }
 </style>
 </head>
 <body>
 
-<div id="min-height-warning">請將視窗放大,或按 F11 全螢幕使用</div>
+<div id="min-height-warning">視窗較小,按 F11 全螢幕體驗較佳</div>
 
 <div id="app">
   <header id="top-bar">
@@ -303,7 +309,9 @@
 
 <script>
   const VOWELS = ['a', 'e', 'i', 'o', 'u'];
-  const MIN_HEIGHT = 700;
+  // 版面本身縮到約 400px 高都還成立(固定 px 的重播/翻頁鍵是真正的下限),
+  // 450 只是「體驗開始打折」的提示線,不再是可用性的門檻
+  const MIN_HEIGHT = 450;
   const CONTRAST_STAGE = 6;
   const MIN_CONTRAST_SIZE = 3;
   const RIME_MODE_STAGES = new Set([7, 8, 9, 10, 11]);  // 挖整塊 rime 的階段(見 HANDOFF.md §B2)
@@ -353,13 +361,13 @@
     }
   }
 
-  // 寬度隨字母數長,高度不變。單字母時不覆寫,樣式完全同以往
-  const UNIT_SIZE = { slot: [13, 4.2, 170, 55], option: [9, 2.6, 110, 34] };
+  // 寬度隨字母數長,高度不變。單字母時不覆寫,樣式完全同以往。
+  // 以 --tile / --option 為基準乘出來,才會跟著 CSS 的寬高限制一起縮
+  const UNIT_SIZE = { slot: ['--tile', 0.323], option: ['--option', 0.31] };
   function sizeUnit(el, len, kind) {
     if (len <= 1) return;
-    const [vw, dvw, px, dpx] = UNIT_SIZE[kind];
-    el.style.width = `calc(${vw}vw + ${((len - 1) * dvw).toFixed(1)}vw)`;
-    el.style.maxWidth = `${px + (len - 1) * dpx}px`;
+    const [sizeVar, grow] = UNIT_SIZE[kind];
+    el.style.width = `calc(var(${sizeVar}) * ${(1 + (len - 1) * grow).toFixed(3)})`;
   }
 
   // 母音字母段 / 尾子音段。比的是字母不是音值:cap 與 cape 同屬母音段 a
